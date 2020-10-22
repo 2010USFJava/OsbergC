@@ -56,7 +56,7 @@ public class Cat {
 		System.out.println(a);
 		Cat b = new Cat(2, 11, 14, "ginger");
 		System.out.println(b);
-		Cat c = new Cat(19, 9, 10, "calico", "Sunny", Sex.male);
+		Cat c = new Cat(19, 9, 10, "calico", "Sunny", Sex.female);
 		System.out.println(c);
 	}
 
