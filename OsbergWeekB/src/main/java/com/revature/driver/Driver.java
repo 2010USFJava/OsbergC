@@ -3,7 +3,9 @@ package com.revature.driver;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.revature.console.*;
+import com.revature.console.Animal;
+import com.revature.console.AnimalLogger;
+import com.revature.console.FileManager;
 
 public class Driver {
 	public static Scanner scanner = new Scanner(System.in);
@@ -12,7 +14,8 @@ public class Driver {
 	public static void main(String[] args) {
 		ArrayList<Animal> zoo;
 		zoo = fileManager.readZooAnimals();
-		while ((zoo = getChoice(zoo)) != null) {}
+		while ((zoo = getChoice(zoo)) != null) {
+		}
 	}
 
 	public static ArrayList<Animal> getChoice(ArrayList<Animal> zoo) {
@@ -50,12 +53,13 @@ public class Driver {
 				System.out.println("Invalid age entered.");
 				return zoo;
 			}
-			if(age < 0) {
+			if (age < 0) {
 				System.out.println("Invalid age entered.");
 				return zoo;
 			}
 			zoo.add(new Animal(locomotion, diet, reproduction, age));
-			AnimalLogger.logger.logMessage("info","Test");
+			AnimalLogger.logMessage("info", "Animal created with the fields:\nlocomotion: "+locomotion+
+					"\ndiet: "+diet+"\nreproduction: "+reproduction+"\nage: "+age+"\n");
 			fileManager.writeZooAnimals(zoo);
 			break;
 		case 2:
