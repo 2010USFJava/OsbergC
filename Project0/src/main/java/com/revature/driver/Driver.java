@@ -6,7 +6,7 @@ import com.revature.bank.*;
 import com.revature.banklogger.BankLogger;
 
 public class Driver {
-	private static Role role = new Role(new RoleServices());
+	private static Role role = new Role();
 	public static Scanner scanner = new Scanner(System.in);
 	
 	public static void main(String[] args) {
