@@ -33,14 +33,14 @@ public class Driver {
 	}
 	
 	private static boolean useInput(String line, Service[] servicesArray) {
-		boolean continueServices;
+		boolean continueServices = true;
 		int choice;
 		try{
 			choice = Integer.parseInt(line)-1;
 		}
 		catch(Exception e) {
 			System.out.println("Error: Please enter a valid number.");
-			return true;
+			return continueServices;
 		}
 		if(-1<choice && choice<servicesArray.length) {
 			continueServices = servicesArray[choice].performService(role);
@@ -48,7 +48,7 @@ public class Driver {
 		}
 		else {
 			System.out.println("Error: Please enter a valid number.");
-			return true;
+			return continueServices;
 		}
 	}
 }

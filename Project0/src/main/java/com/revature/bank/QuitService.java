@@ -1,5 +1,7 @@
 package com.revature.bank;
 
+import com.revature.banklogger.BankLogger;
+
 public class QuitService extends Service {
 	
 	public QuitService() {
@@ -9,7 +11,7 @@ public class QuitService extends Service {
 	
 	@Override
 	public boolean performService(Role role) {
-		// TODO Auto-generated method stub
+		BankLogger.logMessage("info", "The user quit the application.");
 		return false;
 	}
 

@@ -20,7 +20,7 @@ public class LoginService extends Service {
 		return true;
 	}
 
-	private boolean validateLogin(Role role, String username, String password) {
+	private int validateLogin(Role role, String username, String password) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
 		for (Login login : logins) {
 			if (username.equals(login.getUsername())) {
@@ -41,17 +41,18 @@ public class LoginService extends Service {
 						System.out.println("Error: Unrecognized role");
 						break;
 					}
-					BankLogger.logMessage("info", "Logged in as " + role.getGivenName());
-					return true;
+					BankLogger.logMessage("info", "Logged in as user number " + role.getUserID());
+					return role.getUserID();
 				} else {
 					System.out.println("Your username and/or password was incorrect.");
-					BankLogger.logMessage("info", "Attempted login as " + username);
-					return true;
+					BankLogger.logMessage("info", "Attempted login as user number " +
+					role.getUserID());
+					return role.getUserID();
 				}
 			}
 		}
 		System.out.println("Your username and/or password was incorrect.");
-		return true;
+		return role.getUserID();
 	}
 }
 

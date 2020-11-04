@@ -21,10 +21,12 @@ public class CreateLoginService extends Service {
 		String passwordConfirmation = scanner.nextLine();
 		System.out.println("Please enter your real name.");
 		String givenName = scanner.nextLine();
-		return createLogin(role, username, password, passwordConfirmation, givenName);
+		createLogin(role, username, password, passwordConfirmation, givenName);
+		return true;
 	}
 	
-	private boolean createLogin(Role role, String username, String password, String passwordConfirmation, String givenName) {
+	private ArrayList<Login> createLogin(Role role, String username, String password,
+			String passwordConfirmation, String givenName) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
 		// Default logins
 //		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
@@ -39,7 +41,7 @@ public class CreateLoginService extends Service {
 		}
 		if(usernameList.contains(username)) {
 			System.out.println("The username was already taken.");
-			return true;
+			return logins;
 		}
 		else {
 			if(password.equals(passwordConfirmation)) {
@@ -54,10 +56,10 @@ public class CreateLoginService extends Service {
 			}
 			else {
 				System.out.println("The passwords did not match.");
-				return true;
+				return logins;
 			}
 		}
 		role.getFileManager().writeItemsToFile(logins, "logins.txt");
-		return true;		
+		return logins;		
 	}
 }
