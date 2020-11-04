@@ -19,7 +19,7 @@ public class Driver {
 	public static boolean queryService() {
 		Service[] servicesArray = displayMenu();
 		String line = scanner.nextLine();
-		BankLogger.logMessage("info", "User input was " + line);
+//		BankLogger.logMessage("info", "User input was " + line);
 		return useInput(line, servicesArray);
 	}
 	

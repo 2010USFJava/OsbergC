@@ -2,7 +2,7 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 
-import com.revature.bank.Role.roleName;
+import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 
 public class CreateLoginService extends Service {
@@ -13,24 +13,22 @@ public class CreateLoginService extends Service {
 
 	@Override
 	public boolean performService(Role role) {
-		String username;
-		String password;
-		String passwordConfirmation;
 		System.out.println("Please enter a username.");
-		username = scanner.nextLine();
+		String username = scanner.nextLine();
 		System.out.println("Please enter a password.");
-		password = scanner.nextLine();
+		String password = scanner.nextLine();
 		System.out.println("Please confirm your password.");
-		passwordConfirmation = scanner.nextLine();
-		return checkLogin(role, username, password, passwordConfirmation);
+		String passwordConfirmation = scanner.nextLine();
+		System.out.println("Please enter your real name.");
+		String givenName = scanner.nextLine();
+		return createLogin(role, username, password, passwordConfirmation, givenName);
 	}
 	
-	private boolean checkLogin(Role role, String username, String password, String passwordConfirmation) {
-		ArrayList<Login> logins = new ArrayList<Login>();
-		logins = role.fileManager.readItemsFromFile("logins.txt");
+	private boolean createLogin(Role role, String username, String password, String passwordConfirmation, String givenName) {
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
 		// Default logins
-		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE));
-		logins.add(new Login(2, "lorgana", "alliance", roleName.ADMIN));
+//		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
+//		logins.add(new Login(2, "lorgana", "alliance", roleName.ADMIN, "Leia Organa"));
 		
 		System.out.println(logins.toString());
 		ArrayList<String> usernameList = new ArrayList<String>();
@@ -49,16 +47,17 @@ public class CreateLoginService extends Service {
 				while(userIDList.contains(userID)) {
 					userID++;
 				}
-				logins.add(new Login(userID, username, password, roleName.CUSTOMER));
+				logins.add(new Login(userID, username, password, roleName.CUSTOMER, givenName));
 				BankLogger.logMessage("info", "Created a new login with:\nuserID: " + userID +
-						"\nusername: " + username + "\npassword: " + password + "\nroleService: customer");
+						"\nusername: " + username + "\npassword: " + password + "\nroleService: " +
+						roleName.CUSTOMER + "\ngivenName: " + givenName);
 			}
 			else {
 				System.out.println("The passwords did not match.");
 				return true;
 			}
 		}
-		role.fileManager.writeItemsToFile(logins, "logins.txt");
+		role.getFileManager().writeItemsToFile(logins, "logins.txt");
 		return true;		
 	}
 }

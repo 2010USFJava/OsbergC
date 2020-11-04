@@ -2,7 +2,7 @@ package com.revature.bank;
 
 import java.io.Serializable;
 
-import com.revature.bank.Role.roleName;
+import com.revature.bank.RoleServices.roleName;
 
 public class Login implements Serializable {
 	private static final long serialVersionUID = -3243126139747941216L;
@@ -10,13 +10,15 @@ public class Login implements Serializable {
 	private String username;
 	private String password;
 	private roleName role;
+	private String givenName;
 	
-	public Login(int userID, String username, String password, roleName employee) {
+	public Login(int userID, String username, String password, roleName employee, String givenName) {
 		super();
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
 		this.role = employee;
+		this.givenName = givenName;
 	}
 	
 	public int getUserID() {
@@ -35,9 +37,13 @@ public class Login implements Serializable {
 		return role;
 	}
 
+	public String getGivenName() {
+		return givenName;
+	}
+
 	@Override
 	public String toString() {
-		return "Login [userID=" + userID + ", username=" + username + ", password=" + password + ", role=" + role + "]";
+		return "Login [userID=" + userID + ", username=" + username + ", password=" + password + ", role=" + role + ", givenName=" + givenName + "]";
 	}
 	
 }

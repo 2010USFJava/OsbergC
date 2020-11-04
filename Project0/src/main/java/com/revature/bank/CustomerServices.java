@@ -1,6 +1,7 @@
 package com.revature.bank;
 
 public class CustomerServices extends RoleServices {
+	
 	private Service[] servicesArray = {
 			new ApplyForAccountService(),
 			new DepositService(),

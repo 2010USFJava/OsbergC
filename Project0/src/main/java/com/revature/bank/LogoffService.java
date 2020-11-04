@@ -9,7 +9,7 @@ public class LogoffService extends Service {
 
 	@Override
 	public boolean performService(Role role) {
-		// TODO Auto-generated method stub
+		role.setRoleServices(new RoleServices());
 		return true;
 	}
 
