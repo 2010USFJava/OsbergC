@@ -2,7 +2,8 @@ package com.revature.driver;
 
 import java.util.Scanner;
 
-import com.revature.bank.*;
+import com.revature.bank.Role;
+import com.revature.bank.Service;
 import com.revature.banklogger.BankLogger;
 
 public class Driver {
@@ -16,15 +17,23 @@ public class Driver {
 	}
 
 	public static boolean queryService() {
-		String line;
-		boolean continueServices;
+		Service[] servicesArray = displayMenu();
+		String line = scanner.nextLine();
+		BankLogger.logMessage("info", "User input was " + line);
+		return useInput(line, servicesArray);
+	}
+	
+	private static Service[] displayMenu() {
 		System.out.println("Please enter the number of the desired transaction.");
 		Service[] servicesArray = role.getRoleServices().getServicesArray();
 		for(int i=0; i<role.getRoleServices().getServicesArray().length; i++) {
 			System.out.println((i+1) + ". " + servicesArray[i].getServiceName());
 		}
-		line = scanner.nextLine();
-		BankLogger.LogIt("info", "User input was " + line);
+		return servicesArray;
+	}
+	
+	private static boolean useInput(String line, Service[] servicesArray) {
+		boolean continueServices;
 		int choice;
 		try{
 			choice = Integer.parseInt(line)-1;

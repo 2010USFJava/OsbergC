@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 public class BankLogger {
 	static Logger logger = LogManager.getLogger();
 	
-	public static void LogIt(String level, String message) {
+	public static void logMessage(String level, String message) {
 		switch(level) {
 		case "debug":
 			logger.debug(message);

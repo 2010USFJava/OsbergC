@@ -2,23 +2,21 @@ package com.revature.bank;
 
 import java.io.Serializable;
 
+import com.revature.bank.Role.roleName;
+
 public class Login implements Serializable {
 	private static final long serialVersionUID = -3243126139747941216L;
 	private int userID;
 	private String username;
 	private String password;
-	private String role;
+	private roleName role;
 	
-	public Login(int userID, String username, String password, String role) {
+	public Login(int userID, String username, String password, roleName employee) {
 		super();
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
-		this.role = role;
-	}
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+		this.role = employee;
 	}
 	
 	public int getUserID() {
@@ -33,7 +31,7 @@ public class Login implements Serializable {
 		return password;
 	}
 	
-	public String getRole() {
+	public roleName getRole() {
 		return role;
 	}
 

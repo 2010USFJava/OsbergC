@@ -3,15 +3,15 @@ package com.revature.bank;
 public class Role {
 	RoleServices roleServices;
 	FileManager fileManager;
-	/*String userID;
-	String username;
-	String userPassword;
-	String userRole;*/
 	
 	public Role() {
 		super();
 		this.roleServices = new RoleServices();
 		this.fileManager = new FileManager();
+	}
+	
+	enum roleName {
+		CUSTOMER, EMPLOYEE, ADMIN
 	}
 
 	public RoleServices getRoleServices() {

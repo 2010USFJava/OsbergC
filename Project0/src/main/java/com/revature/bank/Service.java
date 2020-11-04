@@ -10,11 +10,11 @@ public abstract class Service {
 	static InputStream inputStream;
 	static OutputStream outputStream;
 	Scanner scanner = new Scanner(System.in);
-	
+
 	public boolean performService(Role role) {
 		return true;
 	}
-	
+
 	public String getServiceName() {
 		return serviceName;
 	}
