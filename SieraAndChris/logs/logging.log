@@ -1,0 +1,5 @@
+[INFO ] 2020-11-05 15:01:19.907 [main] OrderLogger - Test message
+[INFO ] 2020-11-05 15:10:01.686 [main] OrderLogger - Test message
+[INFO ] 2020-11-05 15:10:43.652 [main] OrderLogger - Test message
+[INFO ] 2020-11-05 15:59:26.073 [main] OrderLogger - Added a new menu item called BLT for $8.0
+[INFO ] 2020-11-05 15:59:33.385 [main] OrderLogger - Added a new menu item called Scrambled Eggs for $2.0
