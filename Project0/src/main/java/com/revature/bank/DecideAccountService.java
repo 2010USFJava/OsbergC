@@ -55,7 +55,7 @@ public class DecideAccountService extends Service {
 		}
 		System.out.println("User ID: " + userID);
 		ArrayList<Account> userAccountApplications = role.getFileManager().getUserAccounts(role, userID,
-				"userApplications.txt");
+				"accountApplications.txt");
 		if (userAccountApplications.size() > 0) {
 			System.out.println("Which application would you like to manage?");
 			MenuFormatter.displayAccountMenu(userAccountApplications);

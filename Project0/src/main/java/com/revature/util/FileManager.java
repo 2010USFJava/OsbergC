@@ -49,31 +49,31 @@ public class FileManager {
 		}
 		return items;
 	}
-	
+
 	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
 		ArrayList<String> usernameList = new ArrayList<String>();
-		for(Login l : logins) {
+		for (Login l : logins) {
 			usernameList.add(l.getUsername());
 		}
 		return usernameList;
 	}
-	
+
 	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
 		ArrayList<Integer> userIDList = new ArrayList<Integer>();
-		for(Login l : logins) {
+		for (Login l : logins) {
 			userIDList.add(new Integer(l.getUserID()));
 		}
 		return userIDList;
 	}
-	
+
 	public ArrayList<Integer> getAllAccountNumbers(Role role, ArrayList<Account> accounts) {
 		ArrayList<Integer> accountNumberList = new ArrayList<Integer>();
-		for(Account a : accounts) {
+		for (Account a : accounts) {
 			accountNumberList.add(new Integer(a.getAccountNumber()));
 		}
 		return accountNumberList;
 	}
-	
+
 	public ArrayList<Account> getUserAccounts(Role role, Integer userID, String fileName) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
 		BankLogger.logReadItems(accounts);

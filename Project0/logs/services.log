@@ -157,3 +157,35 @@
 [INFO ] 2020-11-06 14:00:57.143 [main] BankLogger - ArrayLists read in:
 []
 
+[INFO ] 2020-11-06 14:09:49.260 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 14:09:49.265 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-06 14:09:52.446 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 14:11:30.791 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 14:11:30.810 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-06 14:13:33.080 [main] BankLogger - ArrayList read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 14:13:33.107 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-06 14:13:43.134 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-06 14:14:06.994 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-06 14:14:06.995 [main] BankLogger - ArrayList written to file:
+[]
+
+[INFO ] 2020-11-06 14:14:06.995 [main] BankLogger - Account number 1 was approved.
+
+[INFO ] 2020-11-06 14:14:06.995 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
