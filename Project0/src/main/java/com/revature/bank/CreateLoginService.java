@@ -24,42 +24,38 @@ public class CreateLoginService extends Service {
 		createLogin(role, username, password, passwordConfirmation, givenName);
 		return true;
 	}
-	
-	private ArrayList<Login> createLogin(Role role, String username, String password,
-			String passwordConfirmation, String givenName) {
+
+	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
+			String givenName) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
+		BankLogger.logMessage("info", "Logins read in:\n" + logins + "\n");
 		// Default logins
 //		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
 //		logins.add(new Login(2, "lorgana", "alliance", roleName.ADMIN, "Leia Organa"));
-		
-		System.out.println(logins.toString());
-		ArrayList<String> usernameList = new ArrayList<String>();
-		ArrayList<Integer> userIDList = new ArrayList<Integer>();
-		for(Login l : logins) {
-			userIDList.add(new Integer(l.getUserID()));
-			usernameList.add(l.getUsername());
-		}
-		if(usernameList.contains(username)) {
+
+		ArrayList<String> usernameList = role.getFileManager().getAllLoginUsernames(role, logins);
+		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
+		if (usernameList.contains(username)) {
 			System.out.println("The username was already taken.");
 			return logins;
-		}
-		else {
-			if(password.equals(passwordConfirmation)) {
+		} else {
+			if (password.equals(passwordConfirmation)) {
 				int userID = 1;
-				while(userIDList.contains(userID)) {
+				while (userIDList.contains(userID)) {
 					userID++;
 				}
-				logins.add(new Login(userID, username, password, roleName.CUSTOMER, givenName));
-				BankLogger.logMessage("info", "Created a new login with:\nuserID: " + userID +
-						"\nusername: " + username + "\npassword: " + password + "\nroleService: " +
-						roleName.CUSTOMER + "\ngivenName: " + givenName);
-			}
-			else {
+				logins.add(new Login(new Integer(userID), username, password, roleName.CUSTOMER, givenName));
+				BankLogger.logMessage("info",
+						"Created a new login with:\nuserID: " + userID + "\nusername: " + username + "\npassword: "
+								+ password + "\nroleService: " + roleName.CUSTOMER + "\ngivenName: " + givenName
+								+ "\n");
+			} else {
 				System.out.println("The passwords did not match.");
 				return logins;
 			}
 		}
 		role.getFileManager().writeItemsToFile(logins, "logins.txt");
-		return logins;		
+		BankLogger.logMessage("info", "Logins written to file:\n" + logins + "\n");
+		return logins;
 	}
 }

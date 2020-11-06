@@ -44,4 +44,37 @@ public class FileManager {
 		}
 		return items;
 	}
+	
+	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
+		//ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
+		ArrayList<String> usernameList = new ArrayList<String>();
+		for(Login l : logins) {
+			usernameList.add(l.getUsername());
+		}
+		return usernameList;
+	}
+	
+	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
+		ArrayList<Integer> userIDList = new ArrayList<Integer>();
+		for(Login l : logins) {
+			userIDList.add(new Integer(l.getUserID()));
+		}
+		return userIDList;
+	}
+	
+	public ArrayList<Integer> getAllApplicationAccountNumbers(Role role, ArrayList<AccountApplication> accountApplications) {
+		ArrayList<Integer> applicationAccountNumberList = new ArrayList<Integer>();
+		for(AccountApplication a : accountApplications) {
+			applicationAccountNumberList.add(new Integer(a.getAccountNumber()));
+		}
+		return applicationAccountNumberList;
+	}
+	
+	public ArrayList<Integer> getAllAccountNumbers(Role role, ArrayList<Account> accounts) {
+		ArrayList<Integer> accountNumberList = new ArrayList<Integer>();
+		for(Account a : accounts) {
+			accountNumberList.add(new Integer(a.getAccountNumber()));
+		}
+		return accountNumberList;
+	}
 }

@@ -6,13 +6,13 @@ import com.revature.bank.RoleServices.roleName;
 
 public class Login implements Serializable {
 	private static final long serialVersionUID = -3243126139747941216L;
-	private int userID;
+	private Integer userID;
 	private String username;
 	private String password;
 	private roleName role;
 	private String givenName;
 	
-	public Login(int userID, String username, String password, roleName employee, String givenName) {
+	public Login(Integer userID, String username, String password, roleName employee, String givenName) {
 		super();
 		this.userID = userID;
 		this.username = username;
@@ -21,7 +21,7 @@ public class Login implements Serializable {
 		this.givenName = givenName;
 	}
 	
-	public int getUserID() {
+	public Integer getUserID() {
 		return userID;
 	}
 	

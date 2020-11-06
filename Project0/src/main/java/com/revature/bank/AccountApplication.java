@@ -1,36 +1,38 @@
 package com.revature.bank;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class AccountApplication implements Serializable {
 	private static final long serialVersionUID = -1497836379492524526L;
-	private int userID;
+	private ArrayList<Integer> userIDs;
 	private String accountType;
-	private String applicationStatus;
+	private Integer accountNumber;
 
-	public AccountApplication(int userID, String accountType, String applicationStatus) {
+	public AccountApplication(ArrayList<Integer> userIDs, String accountType, Integer accountNumber) {
 		super();
-		this.userID = userID;
+		this.userIDs = userIDs;
 		this.accountType = accountType;
-		this.applicationStatus = applicationStatus;
+		this.accountNumber = accountNumber;
 	}
 
-	public int getUserID() {
-		return userID;
+	public ArrayList<Integer> getUserIDs() {
+		return userIDs;
 	}
 
 	public String getAccountType() {
 		return accountType;
 	}
 
-	public String getApplicationStatus() {
-		return applicationStatus;
+	public Integer getAccountNumber() {
+		return accountNumber;
 	}
 
 	@Override
 	public String toString() {
-		return "AccountApplication [userID=" + userID + ", accountType=" + accountType + ", applicationStatus="
-				+ applicationStatus + "]";
+		return "AccountApplication [userIDs=" + userIDs + ", accountType=" + accountType + ", accountNumber="
+				+ accountNumber + "]";
 	}
 
+	
 }

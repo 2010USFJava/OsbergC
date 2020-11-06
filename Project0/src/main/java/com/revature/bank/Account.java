@@ -2,26 +2,27 @@ package com.revature.bank;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Account implements Serializable {
 	private static final long serialVersionUID = -2189496940240975358L;
-	private int number;
-	private int userID;
+	private int accountNumber;
+	private ArrayList<Integer> userIDs;
 	private BigDecimal balance;
 
-	public Account(int number, int userID, BigDecimal balance) {
+	public Account(int accountNumber, ArrayList<Integer> userIDs, BigDecimal balance) {
 		super();
-		this.number = number;
-		this.userID = userID;
+		this.accountNumber = accountNumber;
+		this.userIDs = userIDs;
 		this.balance = balance;
 	}
 
-	public int getNumber() {
-		return number;
+	public int getAccountNumber() {
+		return accountNumber;
 	}
 
-	public int getUserID() {
-		return userID;
+	public ArrayList<Integer> getUserIDs() {
+		return userIDs;
 	}
 
 	public BigDecimal getBalance() {
@@ -30,7 +31,7 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [number=" + number + ", userID=" + userID + ", balance=" + balance + "]";
+		return "Account [accountNumber=" + accountNumber + ", userIDs=" + userIDs + ", balance=" + balance + "]";
 	}
 
 }

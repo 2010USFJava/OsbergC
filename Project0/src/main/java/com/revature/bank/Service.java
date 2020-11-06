@@ -11,9 +11,7 @@ public abstract class Service {
 	static OutputStream outputStream;
 	Scanner scanner = new Scanner(System.in);
 
-	public boolean performService(Role role) {
-		return true;
-	}
+	public abstract boolean performService(Role role);
 
 	public String getServiceName() {
 		return serviceName;
