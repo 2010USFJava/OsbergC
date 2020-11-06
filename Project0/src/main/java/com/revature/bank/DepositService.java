@@ -16,19 +16,20 @@ public class DepositService extends Service {
 
 	@Override
 	public boolean performService(Role role) {
-		Integer iUserID;
-		if ((iUserID = obtainUserID(role)) < 0) {
-			return true;
-		}
-		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,
-				FileManager.ACCOUNTSFILE);
-		MenuFormatter.displayAccountMenu(role, userAccounts);
-		System.out.println("Into which account would you like to make a deposit?");
-		String sAccountSelection = scanner.nextLine();
-		Integer iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
-		if (iAccountSelection < 0) {
-			return true;
-		}
+//		Integer iUserID;
+//		if ((iUserID = obtainUserID(role)) < 0) {
+//			return true;
+//		}
+//		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,
+//				FileManager.ACCOUNTSFILE);
+//		MenuFormatter.displayAccountMenu(role, userAccounts);
+//		System.out.println("Into which account would you like to make a deposit?");
+//		String sAccountSelection = scanner.nextLine();
+//		Integer iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
+//		if (iAccountSelection < 0) {
+//			return true;
+//		}
+		Integer iAccountNumber = obtainTargetUserAccountNumber(role, "Into which account would you like to make a deposit?");
 		System.out.println("How much would you like to deposit?");
 		String sDeposit = scanner.nextLine();
 		BigDecimal bdDeposit = InputVerifier.verifyBigDecimalInput(sDeposit, new BigDecimal(0),
@@ -36,24 +37,18 @@ public class DepositService extends Service {
 		if (bdDeposit.intValue() < 0) {
 			return true;
 		}
-		makeDeposit(role, iAccountSelection, bdDeposit, userAccounts);
+		makeDeposit(role, iAccountNumber, bdDeposit);
 		return true;
 	}
 
-	private BigDecimal makeDeposit(Role role, Integer iAccountSelection, BigDecimal bdDeposit,
-			ArrayList<Account> userAccounts) {
-		Integer accountNumber = userAccounts.get(iAccountSelection - 1).getAccountNumber();
+	private BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
-		Account selectedAccount = null;
-		for (Account account : accounts) {
-			if (account.getAccountNumber().equals(accountNumber)) {
-				account.setBalance(bdDeposit);
-				selectedAccount = account;
-			}
-		}
+		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber);
+		BigDecimal bdSum = accounts.get(selectedAccountIndex).getBalance().add(bdDeposit);
+		accounts.get(selectedAccountIndex).setBalance(bdSum);
 		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTSFILE);
 		BankLogger.logMessage("info", "Made a deposit of " + bdDeposit + " into account number "
-				+ selectedAccount.getAccountNumber() + ".\n");
-		return selectedAccount.getBalance();
+				+ iAccountNumber + ". The account now has $" + bdSum + ".\n");
+		return bdSum;
 	}
 }

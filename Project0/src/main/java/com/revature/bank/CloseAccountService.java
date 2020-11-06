@@ -14,7 +14,7 @@ public class CloseAccountService extends Service {
 
 	@Override
 	public boolean performService(Role role) {
-		Integer iAccountNumber = obtainTargetUserAccount(role, "Please enter the number for the account you wish to close.");
+		Integer iAccountNumber = obtainTargetUserAccountNumber(role, "Please enter the number for the account you wish to close.");
 		closeAccount(role, iAccountNumber);
 		return true;
 	}

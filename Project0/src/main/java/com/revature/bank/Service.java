@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.revature.bank.RoleServices.roleName;
+import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -40,7 +41,7 @@ public abstract class Service {
 		return iUserID;
 	}
 	
-	Integer obtainTargetUserAccount(Role role, String instructionForChoosingAccount) {
+	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount) {
 		Integer iUserID;
 		if ((iUserID = obtainUserID(role)) < 0) {
 			return -1;
@@ -59,5 +60,17 @@ public abstract class Service {
 	
 	Integer obtainAccountNumber (Role role, Integer iAccountSelection, ArrayList<Account> userAccounts) {
 		return userAccounts.get(iAccountSelection-1).getAccountNumber();
+	}
+	
+	Integer obtainAccountIndex(Role role, Integer iAccountNumber) {
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
+		BankLogger.logReadItems(accounts);
+		Integer selectedAccountIndex = null;
+		for (Account account : accounts) {
+			if (account.getAccountNumber().equals(iAccountNumber)) {
+				selectedAccountIndex = accounts.indexOf(account);
+			}
+		}
+		return selectedAccountIndex;
 	}
 }
