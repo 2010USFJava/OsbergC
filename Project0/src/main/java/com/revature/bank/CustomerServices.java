@@ -3,11 +3,11 @@ package com.revature.bank;
 public class CustomerServices extends RoleServices {
 	
 	private Service[] servicesArray = {
-			new ApplyForAccountService(),
+			new ViewAccountsService(),
 			new DepositService(),
 			new WithdrawService(),
-			new ViewAccountsService(),
 			new TransferService(),
+			new ApplyForAccountService(),
 			new LogoffService(),
 			new QuitService()
 			};

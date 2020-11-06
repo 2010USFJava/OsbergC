@@ -56,23 +56,19 @@ public class DecideAccountService extends Service {
 		ArrayList<AccountApplication> accountApplications = role.getFileManager()
 				.readItemsFromFile("accountApplications.txt");
 		BankLogger.logMessage("info", "Account applications read in:\n" + accountApplications + "\n");
-		// Obtains an ArrayList of AccountApplications belonging to the userID
-		Integer applicationIndex = new Integer(-1);
+		ArrayList<AccountApplication> userAccountApplications = new ArrayList<AccountApplication>();
 		for (AccountApplication accountApplication : accountApplications) {
-			if (!accountApplication.getUserIDs().contains(userID)) {
-				applicationIndex = new Integer(accountApplications.indexOf(accountApplication));
+			if (accountApplication.getUserIDs().contains(userID)) {
+				userAccountApplications.add(accountApplication);
 			}
-		}
-		if (applicationIndex.intValue() > -1) {
-			accountApplications.remove(applicationIndex.intValue());
 		}
 		System.out.println("Which application would you like to manage?");
 		System.out.println("\tAccount Number\tAccount Type");
-		for (AccountApplication application : accountApplications) {
-			System.out.println((accountApplications.indexOf(application) + 1) + ".\t" + application.getAccountNumber()
-					+ "\t\t" + application.getAccountType());
+		for (AccountApplication application : userAccountApplications) {
+			System.out.println((userAccountApplications.indexOf(application) + 1) + ".\t"
+					+ application.getAccountNumber() + "\t\t" + application.getAccountType());
 		}
-		return accountApplications;
+		return userAccountApplications;
 	}
 
 	private Account handleApplication(Role role, Integer iSelectedApplication,
@@ -81,6 +77,7 @@ public class DecideAccountService extends Service {
 		case 1:
 			ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
 			Account account = new Account(userApplications.get(iSelectedApplication).getAccountNumber(),
+					userApplications.get(iSelectedApplication).getAccountType(),
 					userApplications.get(iSelectedApplication).getUserIDs(), new BigDecimal(0.0));
 			accounts.add(account);
 			role.getFileManager().writeItemsToFile(accounts, "accounts.txt");

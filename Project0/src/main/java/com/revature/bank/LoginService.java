@@ -2,6 +2,7 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 
+import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 
 public class LoginService extends Service {
@@ -31,12 +32,18 @@ public class LoginService extends Service {
 						role.setRoleServices(new CustomerServices());
 						role.setUserID(login.getUserID());
 						role.setGivenName(login.getGivenName());
+						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
+						BankLogger.logMessage("info", "Accounts read in:\n" + accounts + "\n");
+						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
+						role.setRoleName(roleName.CUSTOMER);
 						break;
 					case EMPLOYEE:
 						role.setRoleServices(new EmployeeServices());
+						role.setRoleName(roleName.EMPLOYEE);
 						break;
 					case ADMIN:
 						role.setRoleServices(new AdminServices());
+						role.setRoleName(roleName.ADMIN);
 						break;
 					default:
 						System.out.println("Error: Unrecognized role");

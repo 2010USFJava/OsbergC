@@ -1,11 +1,15 @@
 package com.revature.bank;
 
+import java.util.ArrayList;
+import com.revature.bank.RoleServices.roleName;
+
 public class Role {
 	private RoleServices roleServices;
 	private FileManager fileManager;
-	private int userID;
+	private Integer userID;
 	private String givenName;
-	private int[] accountNumbers;
+	private ArrayList<Integer> accountNumbers;
+	private roleName roleName;
 	
 	public Role() {
 		super();
@@ -25,11 +29,11 @@ public class Role {
 		return fileManager;
 	}
 
-	public int getUserID() {
+	public Integer getUserID() {
 		return userID;
 	}
 
-	public void setUserID(int userID) {
+	public void setUserID(Integer userID) {
 		this.userID = userID;
 	}
 
@@ -41,12 +45,20 @@ public class Role {
 		this.givenName = givenName;
 	}
 
-	public int[] getAccountNumbers() {
+	public ArrayList<Integer> getAccountNumbers() {
 		return accountNumbers;
 	}
 
-	public void setAccountNumbers(int[] accountNumbers) {
+	public void setAccountNumbers(ArrayList<Integer> accountNumbers) {
 		this.accountNumbers = accountNumbers;
+	}
+
+	public roleName getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(roleName roleName) {
+		this.roleName = roleName;
 	}
 	
 }

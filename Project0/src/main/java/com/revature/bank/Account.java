@@ -7,12 +7,14 @@ import java.util.ArrayList;
 public class Account implements Serializable {
 	private static final long serialVersionUID = -2189496940240975358L;
 	private int accountNumber;
+	private String accountType;
 	private ArrayList<Integer> userIDs;
 	private BigDecimal balance;
 
-	public Account(int accountNumber, ArrayList<Integer> userIDs, BigDecimal balance) {
+	public Account(int accountNumber, String accountType, ArrayList<Integer> userIDs, BigDecimal balance) {
 		super();
 		this.accountNumber = accountNumber;
+		this.accountType = accountType;
 		this.userIDs = userIDs;
 		this.balance = balance;
 	}
@@ -29,9 +31,14 @@ public class Account implements Serializable {
 		return balance;
 	}
 
+	public String getAccountType() {
+		return accountType;
+	}
+
 	@Override
 	public String toString() {
-		return "Account [accountNumber=" + accountNumber + ", userIDs=" + userIDs + ", balance=" + balance + "]";
+		return "Account [accountNumber=" + accountNumber + ", accountType=" + accountType + ", userIDs=" + userIDs
+				+ ", balance=" + balance + "]";
 	}
 
 }
