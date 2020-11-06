@@ -17,7 +17,7 @@ public class DepositService extends Service {
 	@Override
 	public boolean performService(Role role) {
 		Integer iUserID;
-		if ((iUserID = queryUserID(role)) < 0) {
+		if ((iUserID = obtainUserID(role)) < 0) {
 			return true;
 		}
 		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,

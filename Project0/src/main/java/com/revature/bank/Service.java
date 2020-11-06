@@ -3,9 +3,12 @@ package com.revature.bank;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.revature.bank.RoleServices.roleName;
+import com.revature.util.FileManager;
+import com.revature.util.InputVerifier;
 
 public abstract class Service {
 
@@ -20,12 +23,12 @@ public abstract class Service {
 		return serviceName;
 	}
 
-	Integer queryUserID(Role role) {
+	Integer obtainUserID(Role role) {
 		Integer iUserID;
 		if (role.getRoleName() == roleName.CUSTOMER) {
 			iUserID = role.getUserID();
 		} else {
-			System.out.println("Enter the user's ID.");
+			System.out.println("Please enter the user's ID.");
 			String sUserID = scanner.nextLine();
 			try {
 				iUserID = Integer.parseInt(sUserID);
@@ -37,5 +40,24 @@ public abstract class Service {
 		return iUserID;
 	}
 	
+	Integer obtainTargetUserAccount(Role role, String instructionForChoosingAccount) {
+		Integer iUserID;
+		if ((iUserID = obtainUserID(role)) < 0) {
+			return -1;
+		}
+		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,
+				FileManager.ACCOUNTSFILE);
+		MenuFormatter.displayAccountMenu(role, userAccounts);
+		System.out.println(instructionForChoosingAccount);
+		String sAccountSelection = scanner.nextLine();
+		Integer iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
+		if (iAccountSelection < 0) {
+			return -1;
+		}
+		return obtainAccountNumber(role, iAccountSelection, userAccounts);
+	}
 	
+	Integer obtainAccountNumber (Role role, Integer iAccountSelection, ArrayList<Account> userAccounts) {
+		return userAccounts.get(iAccountSelection-1).getAccountNumber();
+	}
 }
