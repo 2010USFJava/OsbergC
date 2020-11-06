@@ -16,19 +16,6 @@ public class DepositService extends Service {
 
 	@Override
 	public boolean performService(Role role) {
-//		Integer iUserID;
-//		if ((iUserID = obtainUserID(role)) < 0) {
-//			return true;
-//		}
-//		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,
-//				FileManager.ACCOUNTSFILE);
-//		MenuFormatter.displayAccountMenu(role, userAccounts);
-//		System.out.println("Into which account would you like to make a deposit?");
-//		String sAccountSelection = scanner.nextLine();
-//		Integer iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
-//		if (iAccountSelection < 0) {
-//			return true;
-//		}
 		Integer iAccountNumber = obtainTargetUserAccountNumber(role, "Into which account would you like to make a deposit?");
 		System.out.println("How much would you like to deposit?");
 		String sDeposit = scanner.nextLine();
