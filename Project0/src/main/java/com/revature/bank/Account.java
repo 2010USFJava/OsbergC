@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+/**
+ * @author chris
+ *
+ */
 public class Account implements Serializable {
 	private static final long serialVersionUID = -2189496940240975358L;
 	private Integer accountNumber;
@@ -19,8 +23,16 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Integer getAccountNumber() {
 		return accountNumber;
+	}
+
+	public String getAccountType() {
+		return accountType;
 	}
 
 	public ArrayList<Integer> getUserIDs() {
@@ -31,8 +43,8 @@ public class Account implements Serializable {
 		return balance;
 	}
 
-	public String getAccountType() {
-		return accountType;
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
 	}
 
 	@Override

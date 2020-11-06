@@ -17,6 +17,9 @@ import com.revature.banklogger.BankLogger;
 public class FileManager {
 	ObjectInputStream objectInputStream;
 	ObjectOutputStream objectOutputStream;
+	public static final String ACCOUNTSFILE = "accounts.txt";
+	public static final String ACCOUNTAPPLICATIONSFILE = "accountApplications.txt";
+	public static final String LOGINSFILE = "logins.txt";
 
 	public <T> void writeItemsToFile(ArrayList<T> items, String filename) {
 		File file = new File(filename);
@@ -52,24 +55,24 @@ public class FileManager {
 
 	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
 		ArrayList<String> usernameList = new ArrayList<String>();
-		for (Login l : logins) {
-			usernameList.add(l.getUsername());
+		for (Login login : logins) {
+			usernameList.add(login.getUsername());
 		}
 		return usernameList;
 	}
 
 	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
 		ArrayList<Integer> userIDList = new ArrayList<Integer>();
-		for (Login l : logins) {
-			userIDList.add(new Integer(l.getUserID()));
+		for (Login login : logins) {
+			userIDList.add(new Integer(login.getUserID()));
 		}
 		return userIDList;
 	}
 
 	public ArrayList<Integer> getAllAccountNumbers(Role role, ArrayList<Account> accounts) {
 		ArrayList<Integer> accountNumberList = new ArrayList<Integer>();
-		for (Account a : accounts) {
-			accountNumberList.add(new Integer(a.getAccountNumber()));
+		for (Account account : accounts) {
+			accountNumberList.add(new Integer(account.getAccountNumber()));
 		}
 		return accountNumberList;
 	}

@@ -2,9 +2,9 @@ package com.revature.driver;
 
 import java.util.Scanner;
 
+import com.revature.bank.MenuFormatter;
 import com.revature.bank.Role;
 import com.revature.bank.Service;
-import com.revature.util.MenuFormatter;
 
 public class Driver {
 	private static Role role = new Role();
@@ -17,7 +17,7 @@ public class Driver {
 	}
 
 	public static boolean queryService() {
-		Service[] servicesArray = MenuFormatter.displayMenu(role);
+		Service[] servicesArray = MenuFormatter.displayMainMenu(role);
 		String line = scanner.nextLine();
 		return useInput(line, servicesArray);
 	}

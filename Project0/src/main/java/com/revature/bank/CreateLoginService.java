@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.util.FileManager;
 
 public class CreateLoginService extends Service {
 	public CreateLoginService() {
@@ -27,7 +28,7 @@ public class CreateLoginService extends Service {
 
 	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINSFILE);
 		BankLogger.logReadItems(logins);
 		// Default logins
 //		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
@@ -54,7 +55,7 @@ public class CreateLoginService extends Service {
 				return logins;
 			}
 		}
-		role.getFileManager().writeItemsToFile(logins, "logins.txt");
+		role.getFileManager().writeItemsToFile(logins, FileManager.LOGINSFILE);
 		BankLogger.logWriteItems(logins);
 		return logins;
 	}

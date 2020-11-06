@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.math.BigDecimal;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.util.FileManager;
 
 public class ApplyForAccountService extends Service {
 
@@ -61,7 +62,7 @@ public class ApplyForAccountService extends Service {
 	}
 
 	private ArrayList<Account> createAccountApplication(Role role, String accountType, ArrayList<Integer> userIDs) {
-		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile("accountApplications.txt");
+		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTAPPLICATIONSFILE);
 		BankLogger.logReadItems(accountApplications);
 		int choice;
 		try {
@@ -70,9 +71,9 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			return accountApplications;
 		}
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINSFILE);
 		BankLogger.logReadItems(logins);
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
 		BankLogger.logReadItems(accounts);
 		ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
 		for (Integer i : userIDs) {
@@ -98,7 +99,7 @@ public class ApplyForAccountService extends Service {
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications.add(new Account(new Integer(accountNumber), "savings", userIDs, new BigDecimal(0.0)));
+			accountApplications.add(new Account(new Integer(accountNumber), "savings ", userIDs, new BigDecimal(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -106,7 +107,7 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			break;
 		}
-		role.getFileManager().writeItemsToFile(accountApplications, "accountApplications.txt");
+		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNTAPPLICATIONSFILE);
 		BankLogger.logWriteItems(accountApplications);
 		return accountApplications;
 	}

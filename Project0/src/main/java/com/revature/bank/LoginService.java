@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.util.FileManager;
 
 public class LoginService extends Service {
 
@@ -22,7 +23,7 @@ public class LoginService extends Service {
 	}
 
 	private int validateLogin(Role role, String username, String password) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINSFILE);
 		BankLogger.logReadItems(logins);
 		for (Login login : logins) {
 			if (username.equals(login.getUsername())) {
@@ -32,7 +33,7 @@ public class LoginService extends Service {
 						role.setRoleServices(new CustomerServices());
 						role.setUserID(login.getUserID());
 						role.setGivenName(login.getGivenName());
-						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
+						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
 						BankLogger.logReadItems(accounts);
 						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
 						role.setRoleName(roleName.CUSTOMER);
