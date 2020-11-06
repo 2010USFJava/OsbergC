@@ -22,13 +22,8 @@ public class CloseAccountService extends Service {
 	private void closeAccount(Role role, Integer iAccountNumber) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
 		BankLogger.logReadItems(accounts);
-		Account selectedAccount = null;
-		for (Account account : accounts) {
-			if (account.getAccountNumber().equals(iAccountNumber)) {
-				selectedAccount = account;
-			}
-		}
-		accounts.remove(selectedAccount);
+		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber);
+		accounts.remove(accounts.get(selectedAccountIndex));
 		BankLogger.logMessage("info", "Closed account number " + iAccountNumber + ".\n");
 		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTSFILE);
 		BankLogger.logWriteItems(accounts);
