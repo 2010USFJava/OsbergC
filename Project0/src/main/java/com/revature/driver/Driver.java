@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.revature.bank.Role;
 import com.revature.bank.Service;
-import com.revature.banklogger.BankLogger;
+import com.revature.util.MenuFormatter;
 
 public class Driver {
 	private static Role role = new Role();
@@ -17,19 +17,9 @@ public class Driver {
 	}
 
 	public static boolean queryService() {
-		Service[] servicesArray = displayMenu();
+		Service[] servicesArray = MenuFormatter.displayMenu(role);
 		String line = scanner.nextLine();
-//		BankLogger.logMessage("info", "User input was " + line);
 		return useInput(line, servicesArray);
-	}
-	
-	private static Service[] displayMenu() {
-		System.out.println("Please enter the number of the desired transaction.");
-		Service[] servicesArray = role.getRoleServices().getServicesArray();
-		for(int i=0; i<role.getRoleServices().getServicesArray().length; i++) {
-			System.out.println((i+1) + ". " + servicesArray[i].getServiceName());
-		}
-		return servicesArray;
 	}
 	
 	private static boolean useInput(String line, Service[] servicesArray) {

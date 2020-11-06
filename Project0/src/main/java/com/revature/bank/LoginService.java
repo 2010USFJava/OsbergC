@@ -39,10 +39,12 @@ public class LoginService extends Service {
 						break;
 					case EMPLOYEE:
 						role.setRoleServices(new EmployeeServices());
+						role.setUserID(login.getUserID());
 						role.setRoleName(roleName.EMPLOYEE);
 						break;
 					case ADMIN:
 						role.setRoleServices(new AdminServices());
+						role.setUserID(login.getUserID());
 						role.setRoleName(roleName.ADMIN);
 						break;
 					default:

@@ -46,3 +46,114 @@
 [INFO ] 2020-11-06 13:19:10.289 [main] BankLogger - Viewed accounts for user number 3.
 
 [INFO ] 2020-11-06 13:19:27.408 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-06 13:44:56.803 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:44:56.809 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:44:56.809 [main] BankLogger - Logged in as user number 4
+
+[INFO ] 2020-11-06 13:45:03.757 [main] BankLogger - ArrayLists read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-06 13:45:03.759 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:45:03.760 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:45:03.760 [main] BankLogger - ArrayLists read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-06 13:45:03.760 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:45:03.760 [main] BankLogger - User number(s) [4] applied for checking account number 2.
+
+[INFO ] 2020-11-06 13:45:03.773 [main] BankLogger - ArrayLists written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=checking, userIDs=[4], balance=0]]
+
+[INFO ] 2020-11-06 13:45:15.649 [main] BankLogger - User number 4 logged off.
+[INFO ] 2020-11-06 13:45:22.562 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:45:22.563 [main] BankLogger - Attempted login as user number 4
+
+[INFO ] 2020-11-06 13:45:28.121 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:45:28.123 [main] BankLogger - Logged in as user number 4
+
+[INFO ] 2020-11-06 13:45:30.728 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:46:18.056 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:47:10.757 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-06 13:53:35.518 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:53:35.526 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:53:35.526 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-06 13:53:39.672 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:53:39.676 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:53:39.677 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:53:39.677 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:53:39.677 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:53:39.679 [main] BankLogger - User number(s) [3] applied for checking account number 1.
+
+[INFO ] 2020-11-06 13:53:39.696 [main] BankLogger - ArrayLists written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-06 13:54:39.408 [main] BankLogger - User number 3 logged off.
+[INFO ] 2020-11-06 13:54:44.842 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:54:44.844 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-06 13:54:49.698 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:54:49.699 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-06 13:56:26.210 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:56:26.224 [main] BankLogger - Logged in as user number null
+
+[INFO ] 2020-11-06 13:57:26.540 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:57:26.554 [main] BankLogger - Logged in as user number null
+
+[INFO ] 2020-11-06 13:59:55.948 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 13:59:55.959 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-06 14:00:06.696 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 14:00:52.976 [main] BankLogger - ArrayLists read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-06 14:00:52.995 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-06 14:00:57.143 [main] BankLogger - ArrayLists read in:
+[]
+

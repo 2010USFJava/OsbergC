@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.util.MenuFormatter;
 
 public class DecideAccountService extends Service {
 
@@ -53,19 +54,17 @@ public class DecideAccountService extends Service {
 			return null;
 		}
 		System.out.println("User ID: " + userID);
-		ArrayList<Account> userAccountApplications = role.getFileManager().getUserAccounts(role,
-				userID);
-		System.out.println("Which application would you like to manage?");
-		System.out.println("\tAccount Number\tAccount Type");
-		for (Account application : userAccountApplications) {
-			System.out.println((userAccountApplications.indexOf(application) + 1) + ".\t"
-					+ application.getAccountNumber() + "\t\t" + application.getAccountType());
+		ArrayList<Account> userAccountApplications = role.getFileManager().getUserAccounts(role, userID,
+				"userApplications.txt");
+		if (userAccountApplications.size() > 0) {
+			System.out.println("Which application would you like to manage?");
+			MenuFormatter.displayAccountMenu(userAccountApplications);
 		}
 		return userAccountApplications;
 	}
 
-	private Account handleApplication(Role role, Integer iSelectedApplication,
-			ArrayList<Account> userApplications, Integer iApproveOrDeny) {
+	private Account handleApplication(Role role, Integer iSelectedApplication, ArrayList<Account> userApplications,
+			Integer iApproveOrDeny) {
 		switch (iApproveOrDeny) {
 		case 1:
 			ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
@@ -91,8 +90,7 @@ public class DecideAccountService extends Service {
 	}
 
 	private void removeApplication(Role role, Integer accountNumber) {
-		ArrayList<Account> accountApplications = role.getFileManager()
-				.readItemsFromFile("accountApplications.txt");
+		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile("accountApplications.txt");
 		BankLogger.logReadItems(accountApplications);
 		Integer applicationIndex = new Integer(-1);
 		for (Account accountApplication : accountApplications) {

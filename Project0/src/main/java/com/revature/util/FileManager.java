@@ -1,4 +1,4 @@
-package com.revature.bank;
+package com.revature.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import com.revature.bank.Account;
+import com.revature.bank.Login;
+import com.revature.bank.Role;
 import com.revature.banklogger.BankLogger;
 
 public class FileManager {
@@ -48,7 +51,6 @@ public class FileManager {
 	}
 	
 	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
-		//ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
 		ArrayList<String> usernameList = new ArrayList<String>();
 		for(Login l : logins) {
 			usernameList.add(l.getUsername());
@@ -72,8 +74,8 @@ public class FileManager {
 		return accountNumberList;
 	}
 	
-	public ArrayList<Account> getUserAccounts(Role role, Integer userID) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
+	public ArrayList<Account> getUserAccounts(Role role, Integer userID, String fileName) {
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
 		BankLogger.logReadItems(accounts);
 		ArrayList<Account> userAccounts = new ArrayList<>();
 		for (Account account : accounts) {

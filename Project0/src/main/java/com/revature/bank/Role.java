@@ -2,6 +2,7 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 import com.revature.bank.RoleServices.roleName;
+import com.revature.util.FileManager;
 
 public class Role {
 	private RoleServices roleServices;
