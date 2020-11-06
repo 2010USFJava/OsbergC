@@ -28,7 +28,7 @@ public class CreateLoginService extends Service {
 	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
-		BankLogger.logMessage("info", "Logins read in:\n" + logins + "\n");
+		BankLogger.logReadItems(logins);
 		// Default logins
 //		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
 //		logins.add(new Login(2, "lorgana", "alliance", roleName.ADMIN, "Leia Organa"));
@@ -55,7 +55,7 @@ public class CreateLoginService extends Service {
 			}
 		}
 		role.getFileManager().writeItemsToFile(logins, "logins.txt");
-		BankLogger.logMessage("info", "Logins written to file:\n" + logins + "\n");
+		BankLogger.logWriteItems(logins);
 		return logins;
 	}
 }

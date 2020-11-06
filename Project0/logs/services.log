@@ -1,350 +1,48 @@
-[INFO ] 2020-11-05 19:15:05.453 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:15:05.459 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-05 19:15:37.589 [main] BankLogger - Account Applications read in:
-[]
-
-[INFO ] 2020-11-05 19:15:37.591 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:15:37.594 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:15:44.108 [main] BankLogger - Account Applications read in:
-[]
-
-[INFO ] 2020-11-05 19:15:44.110 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:15:44.111 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:15:44.111 [main] BankLogger - Account applications read in:
-[]
-
-[INFO ] 2020-11-05 19:15:44.111 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:15:44.112 [main] BankLogger - User number(s) [3] applied for checking account number 1.
-
-[INFO ] 2020-11-05 19:15:44.116 [main] BankLogger - Account Applications written to file:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-05 19:16:55.313 [main] BankLogger - User number 3 logged off.
-[INFO ] 2020-11-05 19:17:07.965 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:17:07.966 [main] BankLogger - Created a new login with:
-userID: 4
-username: chewie
-password: bowcaster
-roleService: CUSTOMER
-givenName: Chewbacca
-
-[INFO ] 2020-11-05 19:17:07.967 [main] BankLogger - Logins written to file:
+[INFO ] 2020-11-06 13:10:53.229 [main] BankLogger - class java.util.ArrayLists read in:
 [Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
 
-[INFO ] 2020-11-05 19:17:15.326 [main] BankLogger - Logins read in:
+[INFO ] 2020-11-06 13:10:53.236 [main] BankLogger - class java.util.ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:10:53.236 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-06 13:10:56.685 [main] BankLogger - class java.util.ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:10:56.688 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-06 13:18:07.561 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-06 13:18:58.169 [main] BankLogger - ArrayLists read in:
 [Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
 
-[INFO ] 2020-11-05 19:17:15.327 [main] BankLogger - Logged in as user number 3
+[INFO ] 2020-11-06 13:18:58.176 [main] BankLogger - ArrayLists read in:
+[]
 
-[INFO ] 2020-11-05 19:17:24.164 [main] BankLogger - Account Applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
+[INFO ] 2020-11-06 13:18:58.176 [main] BankLogger - Logged in as user number 3
 
-[INFO ] 2020-11-05 19:17:24.169 [main] BankLogger - Logins read in:
+[INFO ] 2020-11-06 13:19:06.269 [main] BankLogger - ArrayLists read in:
+[]
+
+[INFO ] 2020-11-06 13:19:06.271 [main] BankLogger - ArrayLists read in:
 [Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
 
-[INFO ] 2020-11-05 19:17:24.169 [main] BankLogger - Accounts read in:
+[INFO ] 2020-11-06 13:19:06.272 [main] BankLogger - ArrayLists read in:
 []
 
-[INFO ] 2020-11-05 19:17:24.169 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-05 19:17:24.169 [main] BankLogger - Accounts read in:
+[INFO ] 2020-11-06 13:19:06.272 [main] BankLogger - ArrayLists read in:
 []
 
-[INFO ] 2020-11-05 19:17:24.170 [main] BankLogger - User number(s) [3, 4] applied for savings account number 2.
-
-[INFO ] 2020-11-05 19:17:24.171 [main] BankLogger - Account Applications written to file:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
-
-[INFO ] 2020-11-05 19:17:41.903 [main] BankLogger - Account Applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
-
-[INFO ] 2020-11-05 19:17:41.906 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:17:41.907 [main] BankLogger - Accounts read in:
+[INFO ] 2020-11-06 13:19:06.272 [main] BankLogger - ArrayLists read in:
 []
 
-[INFO ] 2020-11-05 19:17:41.907 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
+[INFO ] 2020-11-06 13:19:06.276 [main] BankLogger - User number(s) [3] applied for checking account number 1.
 
-[INFO ] 2020-11-05 19:17:41.907 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:17:41.907 [main] BankLogger - User number(s) [3] applied for checking account number 3.
-
-[INFO ] 2020-11-05 19:17:41.909 [main] BankLogger - Account Applications written to file:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:17:45.943 [main] BankLogger - User number 3 logged off.
-[INFO ] 2020-11-05 19:17:52.924 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:17:52.927 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-05 19:17:59.555 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:18:18.843 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:22:50.832 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:22:50.837 [main] BankLogger - Logged in as user number 0
-
-[INFO ] 2020-11-05 19:22:53.092 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:23:03.690 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1], AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:23:03.695 [main] BankLogger - Account applications written to file:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:23:03.695 [main] BankLogger - Account number 1 was denied.
-
-[INFO ] 2020-11-05 19:23:31.609 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:27:09.024 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:30:05.233 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:30:34.268 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:30:34.273 [main] BankLogger - Logged in as user number 0
-
-[INFO ] 2020-11-05 19:30:37.524 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:30:54.561 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:31:00.139 [main] BankLogger - The user quit the application.
-[INFO ] 2020-11-05 19:31:49.998 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:31:50.003 [main] BankLogger - Logged in as user number 0
-
-[INFO ] 2020-11-05 19:31:53.995 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:41:38.756 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:41:38.761 [main] BankLogger - Logged in as user number 0
-
-[INFO ] 2020-11-05 19:41:40.854 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:42:09.732 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:42:23.153 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2], AccountApplication [userIDs=[3], accountType=checking, accountNumber=3]]
-
-[INFO ] 2020-11-05 19:42:23.157 [main] BankLogger - Account applications written to file:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
-
-[INFO ] 2020-11-05 19:42:23.157 [main] BankLogger - Account number 3 was denied.
-
-[INFO ] 2020-11-05 19:42:26.282 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
-
-[INFO ] 2020-11-05 19:43:03.071 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3, 4], accountType=savings, accountNumber=2]]
-
-[INFO ] 2020-11-05 19:43:03.072 [main] BankLogger - Account applications written to file:
-[]
-
-[INFO ] 2020-11-05 19:43:03.072 [main] BankLogger - Account number 2 was denied.
-
-[INFO ] 2020-11-05 19:43:11.101 [main] BankLogger - Account applications read in:
-[]
-
-[INFO ] 2020-11-05 19:45:29.464 [main] BankLogger - Logins read in:
-[]
-
-[INFO ] 2020-11-05 19:52:16.304 [main] BankLogger - Logins read in:
-[]
-
-[INFO ] 2020-11-05 19:52:58.668 [main] BankLogger - Logins read in:
-[]
-
-[INFO ] 2020-11-05 19:52:58.671 [main] BankLogger - Attempted login as s
-
-[INFO ] 2020-11-05 19:53:34.920 [main] BankLogger - Logins read in:
-[]
-
-[INFO ] 2020-11-05 19:53:34.923 [main] BankLogger - Attempted login as "s"
-
-[INFO ] 2020-11-05 19:53:59.791 [main] BankLogger - Logins read in:
-[]
-
-[INFO ] 2020-11-05 19:53:59.795 [main] BankLogger - Created a new login with:
-userID: 3
-username: hsolo
-password: falcon
-roleService: CUSTOMER
-givenName: Han Solo
-
-[INFO ] 2020-11-05 19:53:59.803 [main] BankLogger - Logins written to file:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:54:04.399 [main] BankLogger - The user quit the application.
-[INFO ] 2020-11-05 19:55:35.458 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
-
-[INFO ] 2020-11-05 19:55:35.462 [main] BankLogger - Created a new login with:
-userID: 4
-username: chewie
-password: bowcaster
-roleService: CUSTOMER
-givenName: Chewbacca
-
-[INFO ] 2020-11-05 19:55:35.464 [main] BankLogger - Logins written to file:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:55:41.587 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:55:41.594 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-05 19:55:58.164 [main] BankLogger - Account Applications read in:
-[]
-
-[INFO ] 2020-11-05 19:55:58.167 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:55:58.167 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:55:58.168 [main] BankLogger - Account applications read in:
-[]
-
-[INFO ] 2020-11-05 19:55:58.168 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-05 19:55:58.169 [main] BankLogger - User number(s) [3] applied for checking account number 1.
-
-[INFO ] 2020-11-05 19:55:58.172 [main] BankLogger - Account Applications written to file:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-05 19:56:04.215 [main] BankLogger - User number 3 logged off.
-[INFO ] 2020-11-05 19:56:09.096 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-05 19:56:09.098 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-05 19:56:12.006 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-05 19:56:15.991 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-05 19:56:15.992 [main] BankLogger - Account applications written to file:
-[]
-
-[INFO ] 2020-11-05 19:56:15.993 [main] BankLogger - Account number 1 was approved.
-
-[INFO ] 2020-11-05 19:56:15.993 [main] BankLogger - Accounts written to file:
-[Account [accountNumber=1, userIDs=[3], balance=0]]
-
-[INFO ] 2020-11-05 19:56:30.603 [main] BankLogger - The user quit the application.
-[INFO ] 2020-11-06 11:31:24.955 [main] BankLogger - The user quit the application.
-[INFO ] 2020-11-06 11:34:32.132 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-06 11:34:32.161 [main] BankLogger - Accounts read in:
-[Account [accountNumber=1, accountType=null, userIDs=[3], balance=0]]
-
-[INFO ] 2020-11-06 11:34:32.162 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-06 11:34:36.727 [main] BankLogger - Accounts read in:
-[Account [accountNumber=1, accountType=null, userIDs=[3], balance=0]]
-
-[INFO ] 2020-11-06 11:34:36.728 [main] BankLogger - Viewed accounts for user number 3.
-
-[INFO ] 2020-11-06 11:35:43.074 [main] BankLogger - The user quit the application.
-[INFO ] 2020-11-06 11:36:01.097 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-06 11:36:01.116 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-06 11:36:01.117 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-06 11:36:07.964 [main] BankLogger - Account Applications read in:
-[]
-
-[INFO ] 2020-11-06 11:36:07.967 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-06 11:36:07.967 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-06 11:36:07.968 [main] BankLogger - Account applications read in:
-[]
-
-[INFO ] 2020-11-06 11:36:07.968 [main] BankLogger - Accounts read in:
-[]
-
-[INFO ] 2020-11-06 11:36:07.970 [main] BankLogger - User number(s) [3] applied for checking account number 1.
-
-[INFO ] 2020-11-06 11:36:07.978 [main] BankLogger - Account Applications written to file:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-06 11:36:12.083 [main] BankLogger - User number 3 logged off.
-[INFO ] 2020-11-06 11:36:16.465 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
-
-[INFO ] 2020-11-06 11:36:16.467 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-06 11:36:21.704 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-06 11:36:28.541 [main] BankLogger - Account applications read in:
-[AccountApplication [userIDs=[3], accountType=checking, accountNumber=1]]
-
-[INFO ] 2020-11-06 11:36:28.542 [main] BankLogger - Account applications written to file:
-[]
-
-[INFO ] 2020-11-06 11:36:28.543 [main] BankLogger - Account number 1 was approved.
-
-[INFO ] 2020-11-06 11:36:28.543 [main] BankLogger - Accounts written to file:
+[INFO ] 2020-11-06 13:19:06.292 [main] BankLogger - ArrayLists written to file:
 [Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
 
-[INFO ] 2020-11-06 11:36:35.252 [main] BankLogger - User number 3 logged off.
-[INFO ] 2020-11-06 11:36:39.175 [main] BankLogger - Logins read in:
-[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+[INFO ] 2020-11-06 13:19:10.289 [main] BankLogger - ArrayLists read in:
+[]
 
-[INFO ] 2020-11-06 11:36:39.180 [main] BankLogger - Accounts read in:
-[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+[INFO ] 2020-11-06 13:19:10.289 [main] BankLogger - Viewed accounts for user number 3.
 
-[INFO ] 2020-11-06 11:36:39.182 [main] BankLogger - Logged in as user number 3
-
-[INFO ] 2020-11-06 11:36:43.986 [main] BankLogger - Accounts read in:
-[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
-
-[INFO ] 2020-11-06 11:36:43.987 [main] BankLogger - Viewed accounts for user number 3.
-
-[INFO ] 2020-11-06 11:36:54.553 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-06 13:19:27.408 [main] BankLogger - The user quit the application.

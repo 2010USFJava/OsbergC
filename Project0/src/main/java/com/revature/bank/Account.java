@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class Account implements Serializable {
 	private static final long serialVersionUID = -2189496940240975358L;
-	private int accountNumber;
+	private Integer accountNumber;
 	private String accountType;
 	private ArrayList<Integer> userIDs;
 	private BigDecimal balance;
 
-	public Account(int accountNumber, String accountType, ArrayList<Integer> userIDs, BigDecimal balance) {
+	public Account(Integer accountNumber, String accountType, ArrayList<Integer> userIDs, BigDecimal balance) {
 		super();
 		this.accountNumber = accountNumber;
 		this.accountType = accountType;
@@ -19,7 +19,7 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public int getAccountNumber() {
+	public Integer getAccountNumber() {
 		return accountNumber;
 	}
 

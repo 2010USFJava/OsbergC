@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import com.revature.banklogger.BankLogger;
+
 public class FileManager {
 	ObjectInputStream objectInputStream;
 	ObjectOutputStream objectOutputStream;
@@ -62,19 +64,23 @@ public class FileManager {
 		return userIDList;
 	}
 	
-	public ArrayList<Integer> getAllApplicationAccountNumbers(Role role, ArrayList<AccountApplication> accountApplications) {
-		ArrayList<Integer> applicationAccountNumberList = new ArrayList<Integer>();
-		for(AccountApplication a : accountApplications) {
-			applicationAccountNumberList.add(new Integer(a.getAccountNumber()));
-		}
-		return applicationAccountNumberList;
-	}
-	
 	public ArrayList<Integer> getAllAccountNumbers(Role role, ArrayList<Account> accounts) {
 		ArrayList<Integer> accountNumberList = new ArrayList<Integer>();
 		for(Account a : accounts) {
 			accountNumberList.add(new Integer(a.getAccountNumber()));
 		}
 		return accountNumberList;
+	}
+	
+	public ArrayList<Account> getUserAccounts(Role role, Integer userID) {
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
+		BankLogger.logReadItems(accounts);
+		ArrayList<Account> userAccounts = new ArrayList<>();
+		for (Account account : accounts) {
+			if (account.getUserIDs().contains(userID)) {
+				userAccounts.add(account);
+			}
+		}
+		return userAccounts;
 	}
 }

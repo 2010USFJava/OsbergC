@@ -33,14 +33,7 @@ public class ViewAccountsService extends Service {
 	}
 
 	private ArrayList<Account> showAccounts(Role role, Integer userID) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
-		BankLogger.logMessage("info", "Accounts read in:\n" + accounts + "\n");
-		ArrayList<Account> userAccounts = new ArrayList<>();
-		for (Account account : accounts) {
-			if (account.getUserIDs().contains(userID)) {
-				userAccounts.add(account);
-			}
-		}
+		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, userID);
 		System.out.println("User #" + role.getUserID() + " - " + role.getGivenName());
 		System.out.println("\tAccount Number\tAccount Type");
 		for (Account account : userAccounts) {

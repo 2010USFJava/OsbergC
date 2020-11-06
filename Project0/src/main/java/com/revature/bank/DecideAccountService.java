@@ -16,7 +16,7 @@ public class DecideAccountService extends Service {
 	public boolean performService(Role role) {
 		System.out.println("Please enter the user's ID number.");
 		String userIDString = scanner.nextLine();
-		ArrayList<AccountApplication> userApplications = decideApplication(role, userIDString);
+		ArrayList<Account> userApplications = decideApplication(role, userIDString);
 		if (userApplications.size() > 0) {
 			String selectedApplication = scanner.nextLine();
 			Integer iSelectedApplication = -1;
@@ -44,7 +44,7 @@ public class DecideAccountService extends Service {
 		return true;
 	}
 
-	private ArrayList<AccountApplication> decideApplication(Role role, String userIDString) {
+	private ArrayList<Account> decideApplication(Role role, String userIDString) {
 		Integer userID = new Integer(0);
 		try {
 			userID = new Integer(Integer.parseInt(userIDString));
@@ -53,18 +53,11 @@ public class DecideAccountService extends Service {
 			return null;
 		}
 		System.out.println("User ID: " + userID);
-		ArrayList<AccountApplication> accountApplications = role.getFileManager()
-				.readItemsFromFile("accountApplications.txt");
-		BankLogger.logMessage("info", "Account applications read in:\n" + accountApplications + "\n");
-		ArrayList<AccountApplication> userAccountApplications = new ArrayList<AccountApplication>();
-		for (AccountApplication accountApplication : accountApplications) {
-			if (accountApplication.getUserIDs().contains(userID)) {
-				userAccountApplications.add(accountApplication);
-			}
-		}
+		ArrayList<Account> userAccountApplications = role.getFileManager().getUserAccounts(role,
+				userID);
 		System.out.println("Which application would you like to manage?");
 		System.out.println("\tAccount Number\tAccount Type");
-		for (AccountApplication application : userAccountApplications) {
+		for (Account application : userAccountApplications) {
 			System.out.println((userAccountApplications.indexOf(application) + 1) + ".\t"
 					+ application.getAccountNumber() + "\t\t" + application.getAccountType());
 		}
@@ -72,7 +65,7 @@ public class DecideAccountService extends Service {
 	}
 
 	private Account handleApplication(Role role, Integer iSelectedApplication,
-			ArrayList<AccountApplication> userApplications, Integer iApproveOrDeny) {
+			ArrayList<Account> userApplications, Integer iApproveOrDeny) {
 		switch (iApproveOrDeny) {
 		case 1:
 			ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
@@ -83,7 +76,7 @@ public class DecideAccountService extends Service {
 			role.getFileManager().writeItemsToFile(accounts, "accounts.txt");
 			removeApplication(role, userApplications.get(iSelectedApplication).getAccountNumber());
 			BankLogger.logMessage("info", "Account number " + account.getAccountNumber() + " was approved.\n");
-			BankLogger.logMessage("info", "Accounts written to file:\n" + accounts + "\n");
+			BankLogger.logWriteItems(accounts);
 			return account;
 		case 2:
 			removeApplication(role, userApplications.get(iSelectedApplication).getAccountNumber());
@@ -98,11 +91,11 @@ public class DecideAccountService extends Service {
 	}
 
 	private void removeApplication(Role role, Integer accountNumber) {
-		ArrayList<AccountApplication> accountApplications = role.getFileManager()
+		ArrayList<Account> accountApplications = role.getFileManager()
 				.readItemsFromFile("accountApplications.txt");
-		BankLogger.logMessage("info", "Account applications read in:\n" + accountApplications + "\n");
+		BankLogger.logReadItems(accountApplications);
 		Integer applicationIndex = new Integer(-1);
-		for (AccountApplication accountApplication : accountApplications) {
+		for (Account accountApplication : accountApplications) {
 			if (accountApplication.getAccountNumber().equals(accountNumber)) {
 				applicationIndex = new Integer(accountApplications.indexOf(accountApplication));
 			}
@@ -111,6 +104,6 @@ public class DecideAccountService extends Service {
 			accountApplications.remove(applicationIndex.intValue());
 		}
 		role.getFileManager().writeItemsToFile(accountApplications, "accountApplications.txt");
-		BankLogger.logMessage("info", "Account applications written to file:\n" + accountApplications + "\n");
+		BankLogger.logWriteItems(accountApplications);
 	}
 }

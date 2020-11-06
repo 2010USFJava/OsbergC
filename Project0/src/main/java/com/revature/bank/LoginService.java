@@ -23,7 +23,7 @@ public class LoginService extends Service {
 
 	private int validateLogin(Role role, String username, String password) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
-		BankLogger.logMessage("info", "Logins read in:\n" + logins + "\n");
+		BankLogger.logReadItems(logins);
 		for (Login login : logins) {
 			if (username.equals(login.getUsername())) {
 				if (password.equals(login.getPassword())) {
@@ -33,7 +33,7 @@ public class LoginService extends Service {
 						role.setUserID(login.getUserID());
 						role.setGivenName(login.getGivenName());
 						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
-						BankLogger.logMessage("info", "Accounts read in:\n" + accounts + "\n");
+						BankLogger.logReadItems(accounts);
 						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
 						role.setRoleName(roleName.CUSTOMER);
 						break;

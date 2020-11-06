@@ -30,4 +30,12 @@ public class BankLogger {
 				System.err.println("Level not recognized");
 		}
 	}
+	
+	public static <T> void logReadItems(T item) {
+		logMessage("info", item.getClass().getSimpleName() + "s read in:\n" + item + "\n");
+	}
+	
+	public static <T> void logWriteItems(T item) {
+		logMessage("info", item.getClass().getSimpleName() + "s written to file:\n" + item + "\n");
+	}
 }

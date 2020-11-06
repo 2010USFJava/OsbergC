@@ -1,6 +1,7 @@
 package com.revature.bank;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 import com.revature.banklogger.BankLogger;
 
@@ -59,11 +60,9 @@ public class ApplyForAccountService extends Service {
 		return true;
 	}
 
-	private ArrayList<AccountApplication> createAccountApplication(Role role, String accountType,
-			ArrayList<Integer> userIDs) {
-		ArrayList<AccountApplication> accountApplications = role.getFileManager()
-				.readItemsFromFile("accountApplications.txt");
-		BankLogger.logMessage("info", "Account Applications read in:\n" + accountApplications + "\n");
+	private ArrayList<Account> createAccountApplication(Role role, String accountType, ArrayList<Integer> userIDs) {
+		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile("accountApplications.txt");
+		BankLogger.logReadItems(accountApplications);
 		int choice;
 		try {
 			choice = Integer.parseInt(accountType);
@@ -72,9 +71,9 @@ public class ApplyForAccountService extends Service {
 			return accountApplications;
 		}
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile("logins.txt");
-		BankLogger.logMessage("info", "Logins read in:\n" + logins + "\n");
+		BankLogger.logReadItems(logins);
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile("accounts.txt");
-		BankLogger.logMessage("info", "Accounts read in:\n" + accounts + "\n");
+		BankLogger.logReadItems(accounts);
 		ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
 		for (Integer i : userIDs) {
 			if (loginUserIDs.contains(i)) {
@@ -84,24 +83,22 @@ public class ApplyForAccountService extends Service {
 				return accountApplications;
 			}
 		}
-		ArrayList<Integer> accountNumberList = role.getFileManager().getAllApplicationAccountNumbers(role,
-				accountApplications);
-		BankLogger.logMessage("info", "Account applications read in:\n" + accountApplications + "\n");
+		ArrayList<Integer> accountNumberList = role.getFileManager().getAllAccountNumbers(role, accountApplications);
+		BankLogger.logReadItems(accountApplications);
 		accountNumberList.addAll(role.getFileManager().getAllAccountNumbers(role, accounts));
-		BankLogger.logMessage("info",
-				"Accounts read in:\n" + role.getFileManager().getAllAccountNumbers(role, accounts) + "\n");
+		BankLogger.logReadItems(role.getFileManager().getAllAccountNumbers(role, accounts));
 		int accountNumber = 1;
 		while (accountNumberList.contains(accountNumber)) {
 			accountNumber++;
 		}
 		switch (choice) {
 		case 1:
-			accountApplications.add(new AccountApplication(userIDs, "checking", new Integer(accountNumber)));
+			accountApplications.add(new Account(new Integer(accountNumber), "checking", userIDs, new BigDecimal(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications.add(new AccountApplication(userIDs, "savings", new Integer(accountNumber)));
+			accountApplications.add(new Account(new Integer(accountNumber), "savings", userIDs, new BigDecimal(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -110,7 +107,7 @@ public class ApplyForAccountService extends Service {
 			break;
 		}
 		role.getFileManager().writeItemsToFile(accountApplications, "accountApplications.txt");
-		BankLogger.logMessage("info", "Account Applications written to file:\n" + accountApplications + "\n");
+		BankLogger.logWriteItems(accountApplications);
 		return accountApplications;
 	}
 }
