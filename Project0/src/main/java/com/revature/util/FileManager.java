@@ -17,9 +17,9 @@ import com.revature.banklogger.BankLogger;
 public class FileManager {
 	ObjectInputStream objectInputStream;
 	ObjectOutputStream objectOutputStream;
-	public static final String ACCOUNTSFILE = "accounts.txt";
-	public static final String ACCOUNTAPPLICATIONSFILE = "accountApplications.txt";
-	public static final String LOGINSFILE = "logins.txt";
+	public static final String ACCOUNTS_FILE = "accounts.txt";
+	public static final String ACCOUNT_APPLICATIONS_FILE = "accountApplications.txt";
+	public static final String LOGINS_FILE = "logins.txt";
 
 	public <T> void writeItemsToFile(ArrayList<T> items, String filename) {
 		File file = new File(filename);

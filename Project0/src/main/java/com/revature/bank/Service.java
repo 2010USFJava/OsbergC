@@ -40,14 +40,13 @@ public abstract class Service {
 		}
 		return iUserID;
 	}
-	
-	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount) {
+
+	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount, String fileName) {
 		Integer iUserID;
 		if ((iUserID = obtainUserID(role)) < 0) {
 			return -1;
 		}
-		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID,
-				FileManager.ACCOUNTSFILE);
+		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID, fileName);
 		MenuFormatter.displayAccountMenu(role, userAccounts);
 		System.out.println(instructionForChoosingAccount);
 		String sAccountSelection = scanner.nextLine();
@@ -55,15 +54,11 @@ public abstract class Service {
 		if (iAccountSelection < 0) {
 			return -1;
 		}
-		return obtainAccountNumber(role, iAccountSelection, userAccounts);
+		return userAccounts.get(iAccountSelection - 1).getAccountNumber();
 	}
-	
-	Integer obtainAccountNumber (Role role, Integer iAccountSelection, ArrayList<Account> userAccounts) {
-		return userAccounts.get(iAccountSelection-1).getAccountNumber();
-	}
-	
-	Integer obtainAccountIndex(Role role, Integer iAccountNumber) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
+
+	Integer obtainAccountIndex(Role role, Integer iAccountNumber, String fileName) {
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
 		BankLogger.logReadItems(accounts);
 		Integer selectedAccountIndex = null;
 		for (Account account : accounts) {

@@ -4,7 +4,7 @@ public class EmployeeServices extends RoleServices {
 	
 	private Service[] servicesArray = {
 			new ViewAccountsService(),
-			new ManageAccountService(),
+			new ManageApplicationService(),
 			new LogoffService(),
 			new QuitService()
 			};

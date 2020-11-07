@@ -26,7 +26,7 @@ public class ViewAccountsService extends Service {
 	}
 
 	private ArrayList<Account> showAccounts(Role role, Integer userID) {
-		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, userID, FileManager.ACCOUNTSFILE);
+		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, userID, FileManager.ACCOUNTS_FILE);
 		if (!userAccounts.isEmpty()) {
 			MenuFormatter.displayAccountMenu(role, userAccounts);
 		}

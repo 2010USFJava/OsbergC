@@ -7,7 +7,7 @@ public class AdminServices extends RoleServices {
 			new DepositService(),
 			new WithdrawService(),
 			new TransferService(),
-			new ManageAccountService(),
+			new ManageApplicationService(),
 			new CloseAccountService(),
 			new LogoffService(),
 			new QuitService()

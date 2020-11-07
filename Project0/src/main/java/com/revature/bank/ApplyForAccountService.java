@@ -62,7 +62,7 @@ public class ApplyForAccountService extends Service {
 	}
 
 	private ArrayList<Account> createAccountApplication(Role role, String accountType, ArrayList<Integer> userIDs) {
-		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTAPPLICATIONSFILE);
+		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile(FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logReadItems(accountApplications);
 		int choice;
 		try {
@@ -71,9 +71,9 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			return accountApplications;
 		}
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINSFILE);
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
 		BankLogger.logReadItems(logins);
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
+		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		BankLogger.logReadItems(accounts);
 		ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
 		for (Integer i : userIDs) {
@@ -94,12 +94,12 @@ public class ApplyForAccountService extends Service {
 		}
 		switch (choice) {
 		case 1:
-			accountApplications.add(new Account(new Integer(accountNumber), "checking", userIDs, new BigDecimal(0.0)));
+			accountApplications.add(new Account(new Integer(accountNumber), "checking", userIDs, BigDecimal.valueOf(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications.add(new Account(new Integer(accountNumber), "savings ", userIDs, new BigDecimal(0.0)));
+			accountApplications.add(new Account(new Integer(accountNumber), "savings ", userIDs, BigDecimal.valueOf(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -107,7 +107,7 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			break;
 		}
-		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNTAPPLICATIONSFILE);
+		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logWriteItems(accountApplications);
 		return accountApplications;
 	}

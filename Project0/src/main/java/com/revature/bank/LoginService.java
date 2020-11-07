@@ -23,7 +23,7 @@ public class LoginService extends Service {
 	}
 
 	private int validateLogin(Role role, String username, String password) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINSFILE);
+		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
 		BankLogger.logReadItems(logins);
 		for (Login login : logins) {
 			if (username.equals(login.getUsername())) {
@@ -33,7 +33,7 @@ public class LoginService extends Service {
 						role.setRoleServices(new CustomerServices());
 						role.setUserID(login.getUserID());
 						role.setGivenName(login.getGivenName());
-						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTSFILE);
+						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 						BankLogger.logReadItems(accounts);
 						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
 						role.setRoleName(roleName.CUSTOMER);
@@ -56,8 +56,8 @@ public class LoginService extends Service {
 					return role.getUserID();
 				} else {
 					System.out.println("Your username and/or password was incorrect.");
-					BankLogger.logMessage("info", "Attempted login as user number " + role.getUserID() + "\n");
-					return role.getUserID();
+					BankLogger.logMessage("info", "Attempted login as user number " + login.getUserID() + "\n");
+					return login.getUserID();
 				}
 			}
 		}
