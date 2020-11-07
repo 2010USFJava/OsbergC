@@ -1,9 +1,7 @@
 package com.revature.bank;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
-import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 

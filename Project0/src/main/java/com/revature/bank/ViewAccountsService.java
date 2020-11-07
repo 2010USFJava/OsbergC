@@ -2,7 +2,6 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 
-import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 
