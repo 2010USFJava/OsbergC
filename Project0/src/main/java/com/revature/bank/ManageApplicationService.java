@@ -25,6 +25,9 @@ public class ManageApplicationService extends Service {
 		System.out.println("2. Deny");
 		String sApproveOrDeny = scanner.nextLine();
 		Integer iApproveOrDeny = InputVerifier.verifyIntegerInput(sApproveOrDeny, 0, 3);
+		if(iApproveOrDeny < 0) {
+			return true;
+		}
 		handleApplication(role, iAccountIndex, iApproveOrDeny);
 		return true;
 	}

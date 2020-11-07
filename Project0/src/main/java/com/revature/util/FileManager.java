@@ -54,11 +54,12 @@ public class FileManager {
 	}
 
 	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
-		ArrayList<String> usernameList = new ArrayList<String>();
+		ArrayList<String> userNameList = new ArrayList<String>();
 		for (Login login : logins) {
-			usernameList.add(login.getUsername());
+			userNameList.add(login.getUsername());
 		}
-		return usernameList;
+		BankLogger.logReadItems(userNameList);
+		return userNameList;
 	}
 
 	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
@@ -66,6 +67,7 @@ public class FileManager {
 		for (Login login : logins) {
 			userIDList.add(new Integer(login.getUserID()));
 		}
+		BankLogger.logReadItems(userIDList);
 		return userIDList;
 	}
 

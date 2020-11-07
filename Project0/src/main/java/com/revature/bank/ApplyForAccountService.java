@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
+import com.revature.util.InputVerifier;
 
 public class ApplyForAccountService extends Service {
 
@@ -18,41 +19,44 @@ public class ApplyForAccountService extends Service {
 		System.out.println("Please specify what kind of account you would like:");
 		System.out.println("1. Checking Account");
 		System.out.println("2. Savings Account");
-		String accountType = scanner.nextLine();
+		String sAccountType = scanner.nextLine();
+		Integer iAccountType = InputVerifier.verifyIntegerInput(sAccountType, 0, 3);
+		if (iAccountType < 0) {
+			return true;
+		}
 		System.out.println("Is this a join account?");
 		System.out.println("1. Yes");
 		System.out.println("2. No");
-		String isJointAccount = scanner.nextLine();
-		ArrayList<Integer> userIDs = new ArrayList<>();
-		Integer iIsJointAccount = -1;
-		try {
-			iIsJointAccount = Integer.parseInt(isJointAccount);
-		} catch (Exception e) {
-			System.out.println("Error: Invalid input");
+		String sIsJointAccount = scanner.nextLine();
+		Integer iIsJointAccount = InputVerifier.verifyIntegerInput(sIsJointAccount, 0, 3);
+		if (iIsJointAccount < 0) {
 			return true;
 		}
+		ArrayList<Integer> accountUserIDs = new ArrayList<>();
+		accountUserIDs.add(role.getUserID());
 		switch (iIsJointAccount) {
 		case 1:
-			userIDs.add(role.getUserID());
 			System.out.println("Please enter the user ID of the other user.");
-			String userIDString = scanner.nextLine();
-			Integer userID;
-			try {
-				userID = Integer.parseInt(userIDString);
-			} catch (Exception e) {
-				System.out.println("Error: Invalid input");
+			String sUserID = scanner.nextLine();
+			Integer iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
+			if (iUserID < 0) {
 				return true;
 			}
-			if (userID.intValue() == role.getUserID()) {
+			ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
+			ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
+			if (iUserID.intValue() == role.getUserID()) {
 				System.out.println("Error: Duplicate user ID.");
 				return true;
+			} else if (!loginUserIDs.contains(iUserID)) {
+				System.out.println("Error: That user doesn't exist.");
+				return true;
+			} else {
+				accountUserIDs.add(iUserID);
+				createAccountApplication(role, iAccountType, accountUserIDs);
 			}
-			userIDs.add(userID);
-			createAccountApplication(role, accountType, userIDs);
 			break;
 		case 2:
-			userIDs.add(role.getUserID());
-			createAccountApplication(role, accountType, userIDs);
+			createAccountApplication(role, iAccountType, accountUserIDs);
 			break;
 		default:
 			System.out.println("Error: Invalid input");
@@ -61,29 +65,12 @@ public class ApplyForAccountService extends Service {
 		return true;
 	}
 
-	private ArrayList<Account> createAccountApplication(Role role, String accountType, ArrayList<Integer> userIDs) {
-		ArrayList<Account> accountApplications = role.getFileManager().readItemsFromFile(FileManager.ACCOUNT_APPLICATIONS_FILE);
+	private void createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIDs) {
+		ArrayList<Account> accountApplications = role.getFileManager()
+				.readItemsFromFile(FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logReadItems(accountApplications);
-		int choice;
-		try {
-			choice = Integer.parseInt(accountType);
-		} catch (Exception e) {
-			System.out.println("Error: Invalid selection");
-			return accountApplications;
-		}
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
-		BankLogger.logReadItems(logins);
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		BankLogger.logReadItems(accounts);
-		ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
-		for (Integer i : userIDs) {
-			if (loginUserIDs.contains(i)) {
-
-			} else {
-				System.out.println("Error: user ID " + i + " was not found.");
-				return accountApplications;
-			}
-		}
 		ArrayList<Integer> accountNumberList = role.getFileManager().getAllAccountNumbers(role, accountApplications);
 		BankLogger.logReadItems(accountApplications);
 		accountNumberList.addAll(role.getFileManager().getAllAccountNumbers(role, accounts));
@@ -92,14 +79,16 @@ public class ApplyForAccountService extends Service {
 		while (accountNumberList.contains(accountNumber)) {
 			accountNumber++;
 		}
-		switch (choice) {
+		switch (iAccountType) {
 		case 1:
-			accountApplications.add(new Account(new Integer(accountNumber), "checking", userIDs, BigDecimal.valueOf(0.0)));
+			accountApplications
+					.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications.add(new Account(new Integer(accountNumber), "savings ", userIDs, BigDecimal.valueOf(0.0)));
+			accountApplications
+					.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.0)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -109,6 +98,5 @@ public class ApplyForAccountService extends Service {
 		}
 		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logWriteItems(accountApplications);
-		return accountApplications;
 	}
 }
