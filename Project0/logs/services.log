@@ -1533,5 +1533,3 @@
 [Account [accountNumber=2, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
 
 [INFO ] 2020-11-07 04:29:03.030 [main] BankLogger - Viewed accounts for user number 3.
-
-[INFO ] 2020-11-07 04:30:26.393 [main] BankLogger - The user quit the application.

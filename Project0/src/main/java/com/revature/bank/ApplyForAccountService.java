@@ -2,6 +2,7 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
@@ -42,13 +43,11 @@ public class ApplyForAccountService extends Service {
 			if (iUserID < 0) {
 				return true;
 			}
-			ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
-			ArrayList<Integer> loginUserIDs = role.getFileManager().getAllLoginUserIDs(role, logins);
 			if (iUserID.intValue() == role.getUserID()) {
 				System.out.println("Error: Duplicate user ID.");
 				return true;
-			} else if (!loginUserIDs.contains(iUserID)) {
-				System.out.println("Error: That user doesn't exist.");
+			} 
+			if (!userExists(role, iUserID)) {
 				return true;
 			} else {
 				accountUserIDs.add(iUserID);
@@ -82,13 +81,13 @@ public class ApplyForAccountService extends Service {
 		switch (iAccountType) {
 		case 1:
 			accountApplications
-					.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.0)));
+					.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.00)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
 			accountApplications
-					.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.0)));
+					.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.00)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -96,6 +95,8 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			break;
 		}
+		// Adjusts display mode of the balance
+		accountApplications.get(accountApplications.size()-1).getBalance().setScale(2, RoundingMode.HALF_EVEN);
 		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logWriteItems(accountApplications);
 	}
