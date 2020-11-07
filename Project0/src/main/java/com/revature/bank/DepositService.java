@@ -7,7 +7,7 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
-public class DepositService extends Service {
+public class DepositService extends TransferService {
 
 	public DepositService() {
 		super();
@@ -32,14 +32,5 @@ public class DepositService extends Service {
 		return true;
 	}
 
-	private BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
-		BigDecimal bdSum = accounts.get(selectedAccountIndex).getBalance().add(bdDeposit);
-		accounts.get(selectedAccountIndex).setBalance(bdSum);
-		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
-		BankLogger.logMessage("info", "Made a deposit of " + bdDeposit + " into account number " + iAccountNumber
-				+ ". The account now has $" + bdSum + ".\n");
-		return bdSum;
-	}
+	
 }

@@ -7,7 +7,7 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
-public class WithdrawService extends Service {
+public class WithdrawService extends TransferService {
 
 	public WithdrawService() {
 		super();
@@ -32,19 +32,5 @@ public class WithdrawService extends Service {
 		return true;
 	}
 
-	private BigDecimal makeWithdrawal(Role role, Integer iAccountNumber, BigDecimal bdWithdrawal) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
-		BigDecimal bdDiff = accounts.get(selectedAccountIndex).getBalance().subtract(bdWithdrawal);
-		if (bdDiff.compareTo(BigDecimal.valueOf(-0.005)) > 0) {
-			accounts.get(selectedAccountIndex).setBalance(bdDiff);
-		}else {
-			System.out.println("Error: Insufficient funds");
-			return BigDecimal.valueOf(-1);
-		}
-		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
-		BankLogger.logMessage("info", "Made a withdrawal of " + bdWithdrawal + " from account number " + iAccountNumber
-				+ ". The account now has $" + bdDiff + ".\n");
-		return bdDiff;
-	}
+	
 }

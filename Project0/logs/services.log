@@ -1424,3 +1424,113 @@
 [Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.24], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
 
 [INFO ] 2020-11-06 20:48:33.578 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-07 04:07:47.772 [main] BankLogger - ArrayList read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-07 04:07:47.786 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.24], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:07:47.786 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-07 04:07:50.515 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.24], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:07:57.423 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.24], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:08:05.016 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.24], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:08:05.028 [main] BankLogger - Made a withdrawal of 0.24 from account number 4. The account now has $0.00.
+
+[INFO ] 2020-11-07 04:08:46.935 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:08:46.936 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-07 04:09:43.054 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:09:50.978 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.0], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:09:50.982 [main] BankLogger - Made a deposit of 500.00 into account number 2. The account now has $500.00.
+
+[INFO ] 2020-11-07 04:09:52.514 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:09:52.514 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-07 04:24:15.617 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:24:18.595 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:24:53.496 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:24:56.265 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:05.527 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=500.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:05.529 [main] BankLogger - Made a withdrawal of 25.00 from account number 2. The account now has $475.00.
+
+[INFO ] 2020-11-07 04:25:05.533 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=475.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:05.537 [main] BankLogger - Made a deposit of 25.00 into account number 4. The account now has $25.00.
+
+[INFO ] 2020-11-07 04:25:10.514 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=475.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:10.515 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-07 04:25:17.504 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=475.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:20.094 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=475.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:26.437 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=475.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:26.439 [main] BankLogger - Made a withdrawal of 475.00 from account number 2. The account now has $0.00.
+
+[INFO ] 2020-11-07 04:25:30.294 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:25:30.295 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-07 04:25:34.312 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-07 04:28:42.845 [main] BankLogger - ArrayList read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-07 04:28:42.858 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:28:42.858 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-07 04:28:46.161 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:28:49.491 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:28:53.763 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:28:53.774 [main] BankLogger - Made a withdrawal of 25.00 from account number 4. The account now has $0.00.
+
+[INFO ] 2020-11-07 04:28:53.779 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:28:53.781 [main] BankLogger - Made a deposit of 25.00 into account number 2. The account now has $25.00.
+
+[INFO ] 2020-11-07 04:29:03.029 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=checking, userIDs=[3], balance=25.00], Account [accountNumber=4, accountType=checking, userIDs=[3], balance=0.00], Account [accountNumber=1, accountType=savings , userIDs=[3, 4], balance=0.0], Account [accountNumber=3, accountType=savings , userIDs=[3], balance=0.0]]
+
+[INFO ] 2020-11-07 04:29:03.030 [main] BankLogger - Viewed accounts for user number 3.
+

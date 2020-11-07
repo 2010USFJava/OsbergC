@@ -37,7 +37,7 @@ public class FileManager {
 	@SuppressWarnings("unchecked")
 	public <T> ArrayList<T> readItemsFromFile(String filename) {
 		File file = new File(filename);
-		ArrayList<T> items = new ArrayList<T>();
+		ArrayList<T> items = new ArrayList<>();
 		if (file.exists()) {
 			try {
 				objectInputStream = new ObjectInputStream(new FileInputStream(file));
@@ -54,7 +54,7 @@ public class FileManager {
 	}
 
 	public ArrayList<String> getAllLoginUsernames(Role role, ArrayList<Login> logins) {
-		ArrayList<String> userNameList = new ArrayList<String>();
+		ArrayList<String> userNameList = new ArrayList<>();
 		for (Login login : logins) {
 			userNameList.add(login.getUsername());
 		}
@@ -63,7 +63,7 @@ public class FileManager {
 	}
 
 	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
-		ArrayList<Integer> userIDList = new ArrayList<Integer>();
+		ArrayList<Integer> userIDList = new ArrayList<>();
 		for (Login login : logins) {
 			userIDList.add(new Integer(login.getUserID()));
 		}
@@ -72,12 +72,19 @@ public class FileManager {
 	}
 
 	public ArrayList<Integer> getAllAccountNumbers(Role role, ArrayList<Account> accounts) {
-		ArrayList<Integer> accountNumberList = new ArrayList<Integer>();
+		ArrayList<Integer> accountNumberList = new ArrayList<>();
 		for (Account account : accounts) {
-			accountNumberList.add(new Integer(account.getAccountNumber()));
+			accountNumberList.add(account.getAccountNumber());
 		}
 		return accountNumberList;
 	}
+	
+//	public <T> ArrayList<Integer> getAllItemNumbers(Role role, ArrayList<T> items){
+//		ArrayList<Integer> itemNumberList = new ArrayList<>();
+//		for(T item : items) {
+//			itemNumberList.add(item.get)
+//		}
+//	}
 
 	public ArrayList<Account> getUserAccounts(Role role, Integer userID, String fileName) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
