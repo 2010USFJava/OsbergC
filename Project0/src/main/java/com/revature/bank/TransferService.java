@@ -7,6 +7,14 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
+/**
+ * The TransferService class contains the functionality for transferring money
+ * from one account to another.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class TransferService extends Service {
 
 	public TransferService() {
@@ -14,6 +22,17 @@ public class TransferService extends Service {
 		serviceName = "Make a Transfer";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use. The method then removes money from one
+	 * account and places it into another.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	@Override
 	public boolean performService(Role role) {
 		Integer iWithdrawalAccountNumber = obtainTargetUserAccountNumber(role,
@@ -21,8 +40,16 @@ public class TransferService extends Service {
 		if (iWithdrawalAccountNumber < 0) {
 			return true;
 		}
-		Integer iDepositAccountNumber = obtainTargetUserAccountNumber(role,
-				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
+//		Integer iDepositAccountNumber = obtainTargetUserAccountNumber(role,
+//				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
+		System.out.println("Please enter the user ID for the account you wish you transfer to.");
+		String sDepositUserID = scanner.nextLine();
+		Integer iDepositUserID = InputVerifier.verifyIntegerInput(sDepositUserID, 0, Integer.MAX_VALUE);
+		if (iDepositUserID < 0) {
+			return true;
+		}
+		Integer iDepositAccountNumber = useUserIDToGetTargetAccount(role,
+				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE, iDepositUserID);
 		if (iDepositAccountNumber < 0) {
 			return true;
 		}
@@ -39,6 +66,16 @@ public class TransferService extends Service {
 		return true;
 	}
 
+	/**
+	 * The makeWithdrawal method reads in all accounts, gets the accounts associated
+	 * with the user ID, verifies whether the account has enough funds, and removes
+	 * the funds from the account, then it writes the accounts to a file.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return BigDecimal Returns the amount of money in the account.
+	 */
 	BigDecimal makeWithdrawal(Role role, Integer iAccountNumber, BigDecimal bdWithdrawal) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
@@ -55,6 +92,17 @@ public class TransferService extends Service {
 		return bdDiff;
 	}
 
+	/**
+	 * The makeDeposit method reads in all accounts, gets the accounts associated
+	 * with the user, and adds funds to the account, and writes the accounts to a
+	 * file.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);

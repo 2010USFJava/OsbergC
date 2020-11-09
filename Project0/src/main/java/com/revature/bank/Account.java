@@ -5,8 +5,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
- * @author chris
- *
+ * The Account class is a substitute for a database entry. Its private fields
+ * represent columns in the database row.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ * 
  */
 public class Account implements Serializable {
 	private static final long serialVersionUID = -2189496940240975358L;

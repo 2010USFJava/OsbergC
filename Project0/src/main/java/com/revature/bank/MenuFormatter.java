@@ -2,12 +2,27 @@ package com.revature.bank;
 
 import java.util.ArrayList;
 
+/**
+ * The MenuFormatter class contains the functionality for formatting menus.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class MenuFormatter {
 
 	private MenuFormatter() {
 		super();
 	}
 
+	/**
+	 * The displayAccountMenu method displays the user ID, name, and their accounts
+	 * with numeric menu inputs.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 */
 	public static void displayAccountMenu(Role role, ArrayList<Account> accounts) {
 		if (!accounts.isEmpty()) {
 			System.out.println("User #" + role.getUserID() + " - " + role.getGivenName());
@@ -19,6 +34,15 @@ public class MenuFormatter {
 		}
 	}
 
+	/**
+	 * The displayMainMenu method displays all of the services available to the
+	 * current role with numeric menu inputs.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return Service[] Returns an array of services available to the role.
+	 */
 	public static Service[] displayMainMenu(Role role) {
 		System.out.println("Please enter the number of the desired transaction.");
 		Service[] servicesArray = role.getRoleServices().getServicesArray();

@@ -8,6 +8,15 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
+/**
+ * The ApplyForAccountService class contains the functionality for applying for
+ * a bank account.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
+
 public class ApplyForAccountService extends Service {
 
 	public ApplyForAccountService() {
@@ -15,6 +24,16 @@ public class ApplyForAccountService extends Service {
 		serviceName = "Apply for an Account";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	@Override
 	public boolean performService(Role role) {
 		System.out.println("Please specify what kind of account you would like:");
@@ -25,7 +44,7 @@ public class ApplyForAccountService extends Service {
 		if (iAccountType < 0) {
 			return true;
 		}
-		System.out.println("Is this a join account?");
+		System.out.println("Is this a joint account?");
 		System.out.println("1. Yes");
 		System.out.println("2. No");
 		String sIsJointAccount = scanner.nextLine();
@@ -46,7 +65,7 @@ public class ApplyForAccountService extends Service {
 			if (iUserID.intValue() == role.getUserID()) {
 				System.out.println("Error: Duplicate user ID.");
 				return true;
-			} 
+			}
 			if (!userExists(role, iUserID)) {
 				return true;
 			} else {
@@ -64,6 +83,16 @@ public class ApplyForAccountService extends Service {
 		return true;
 	}
 
+	/**
+	 * The createAccountApplication method obtains an account number, instantiates a
+	 * new account, and writes all applications to a file.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	private void createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIDs) {
 		ArrayList<Account> accountApplications = role.getFileManager()
 				.readItemsFromFile(FileManager.ACCOUNT_APPLICATIONS_FILE);
@@ -80,14 +109,12 @@ public class ApplyForAccountService extends Service {
 		}
 		switch (iAccountType) {
 		case 1:
-			accountApplications
-					.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.00)));
+			accountApplications.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.00)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications
-					.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.00)));
+			accountApplications.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.00)));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -96,7 +123,7 @@ public class ApplyForAccountService extends Service {
 			break;
 		}
 		// Adjusts display mode of the balance
-		accountApplications.get(accountApplications.size()-1).getBalance().setScale(2, RoundingMode.HALF_EVEN);
+		accountApplications.get(accountApplications.size() - 1).getBalance().setScale(2, RoundingMode.HALF_EVEN);
 		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logWriteItems(accountApplications);
 	}

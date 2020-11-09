@@ -6,6 +6,13 @@ import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 
+/**
+ * The LoginService class contains the functionality for logging into the bank.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class LoginService extends Service {
 
 	public LoginService() {
@@ -13,6 +20,16 @@ public class LoginService extends Service {
 		serviceName = "Log in";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	public boolean performService(Role role) {
 		System.out.println("Please enter your username.");
 		String username = scanner.nextLine();
@@ -22,7 +39,16 @@ public class LoginService extends Service {
 		return true;
 	}
 
-	private int validateLogin(Role role, String username, String password) {
+	/**
+	 * The validateLogin method reads in all Logins, verifies the username and
+	 * password, and initializes role fields.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return Integer Returns the user's ID if successful, or -1 if unsuccessful.
+	 */
+	private Integer validateLogin(Role role, String username, String password) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
 		BankLogger.logReadItems(logins);
 		for (Login login : logins) {
@@ -33,7 +59,8 @@ public class LoginService extends Service {
 						role.setRoleServices(new CustomerServices());
 						role.setUserID(login.getUserID());
 						role.setGivenName(login.getGivenName());
-						ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
+						ArrayList<Account> accounts = role.getFileManager()
+								.readItemsFromFile(FileManager.ACCOUNTS_FILE);
 						BankLogger.logReadItems(accounts);
 						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
 						role.setRoleName(roleName.CUSTOMER);

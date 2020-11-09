@@ -10,6 +10,13 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
+/**
+ * The Service class is a parent class, and follows the command design pattern.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public abstract class Service {
 
 	String serviceName;
@@ -17,6 +24,17 @@ public abstract class Service {
 	static OutputStream outputStream;
 	Scanner scanner = new Scanner(System.in);
 
+	/**
+	 * The performService method is abstract in order to enforce sub-classes to
+	 * dynamically perform different services when called as part of the command
+	 * design pattern.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	public abstract boolean performService(Role role);
 
 	public String getServiceName() {
@@ -30,10 +48,8 @@ public abstract class Service {
 		} else {
 			System.out.println("Please enter the user's ID.");
 			String sUserID = scanner.nextLine();
-			try {
-				iUserID = Integer.parseInt(sUserID);
-			} catch (Exception e) {
-				System.out.println("Error: Invalid input");
+			iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
+			if (iUserID < 0) {
 				return -1;
 			}
 			if (!userExists(role, iUserID)) {
@@ -44,12 +60,30 @@ public abstract class Service {
 		return iUserID;
 	}
 
+	/**
+	 * The userExists method reads in all Logins into an ArrayList, and compares the
+	 * input user ID to each database user ID.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean True is returned if a match is found.
+	 */
 	boolean userExists(Role role, Integer iUserID) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
 		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
 		return userIDList.contains(iUserID);
 	}
 
+	/**
+	 * The accountExists method reads in all Accounts into an ArrayList, and
+	 * compares the input account number to each database account number.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean True is returned if a match is found.
+	 */
 	boolean accountExists(Role role, Integer iAccountNumber) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		ArrayList<Integer> accountNumberList = role.getFileManager().getAllAccountNumbers(role, accounts);
@@ -61,11 +95,42 @@ public abstract class Service {
 //		ArrayList<Integer> itemNumberList = role.getFileManager().getAllLoginUserIDs(role, items);
 //	}
 
+	/**
+	 * The obtainTargetUserAccountNumber method is used to created a menu of
+	 * accounts belonging to a specific customer. The user specifies which account
+	 * is desired.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return Integer Returns the chosen account's number.
+	 */
 	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount, String fileName) {
 		Integer iUserID;
 		if ((iUserID = obtainUserID(role)) < 0) {
 			return -1;
 		}
+		return useUserIDToGetTargetAccount(role, instructionForChoosingAccount, fileName, iUserID);
+	}
+
+	/**
+	 * The useUserIDToGetTargetAccount method reads in all accounts, finds those
+	 * belonging to the iUserID, displays the accounts, and allows the user to
+	 * choose one for service.
+	 * <p>
+	 * 
+	 * @param role                          The role parameter is the wrapper class
+	 *                                      identity for the user of the program. It
+	 *                                      contains references to non-package
+	 *                                      classes.
+	 * @param instructionForChoosingAccount The instructionForChoosingAccount
+	 *                                      parameter is the instruction given to
+	 *                                      the user for selecting an account from
+	 *                                      the displayed menu.
+	 * @return Integer Returns the chosen account's number.
+	 */
+	Integer useUserIDToGetTargetAccount(Role role, String instructionForChoosingAccount, String fileName,
+			Integer iUserID) {
 		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID, fileName);
 		MenuFormatter.displayAccountMenu(role, userAccounts);
 		if (userAccounts.isEmpty()) {
@@ -82,6 +147,15 @@ public abstract class Service {
 		}
 	}
 
+	/**
+	 * The obtainAccountIndex method reads in all accounts, and finds the account
+	 * with the specified account number.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return Integer Returns the index of the account specified.
+	 */
 	Integer obtainAccountIndex(Role role, Integer iAccountNumber, String fileName) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
 		BankLogger.logReadItems(accounts);

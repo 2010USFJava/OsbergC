@@ -6,6 +6,14 @@ import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
+/**
+ * The ManageApplicationService class contains the functionality for approving
+ * or denying account applications.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class ManageApplicationService extends Service {
 
 	public ManageApplicationService() {
@@ -13,6 +21,16 @@ public class ManageApplicationService extends Service {
 		serviceName = "Approve/Deny an Account Application";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	@Override
 	public boolean performService(Role role) {
 		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
@@ -24,13 +42,25 @@ public class ManageApplicationService extends Service {
 		System.out.println("2. Deny");
 		String sApproveOrDeny = scanner.nextLine();
 		Integer iApproveOrDeny = InputVerifier.verifyIntegerInput(sApproveOrDeny, 0, 3);
-		if(iApproveOrDeny < 0) {
+		if (iApproveOrDeny < 0) {
 			return true;
 		}
 		handleApplication(role, iAccountIndex, iApproveOrDeny);
 		return true;
 	}
 
+	/**
+	 * The handleApplication method reads in all account applications, and either
+	 * approves or denies them based on the parameters, then it writes all account
+	 * applications to a file.
+	 * <p>
+	 * 
+	 * @param role           The role parameter is the wrapper class identity for
+	 *                       the user of the program. It contains references to
+	 *                       non-package classes.
+	 * @param iApproveOrDeny contains the numeric menu choice for approving or
+	 *                       denying the application.
+	 */
 	private void handleApplication(Role role, Integer iAccountIndex, Integer iApproveOrDeny) {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		BankLogger.logReadItems(accounts);

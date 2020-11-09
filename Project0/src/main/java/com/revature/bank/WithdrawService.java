@@ -5,6 +5,14 @@ import java.math.BigDecimal;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
+/**
+ * The WithdrawService class contains the functionality for making withdrawals
+ * from a bank account.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class WithdrawService extends TransferService {
 
 	public WithdrawService() {
@@ -12,6 +20,16 @@ public class WithdrawService extends TransferService {
 		serviceName = "Make a Withdrawal";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	@Override
 	public boolean performService(Role role) {
 		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
@@ -30,5 +48,4 @@ public class WithdrawService extends TransferService {
 		return true;
 	}
 
-	
 }

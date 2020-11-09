@@ -4,6 +4,14 @@ import java.io.Serializable;
 
 import com.revature.bank.RoleServices.roleName;
 
+/**
+ * The Login class is a substitute for a database entry. Its private fields
+ * represent columns in the database row.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ * 
+ */
 public class Login implements Serializable {
 	private static final long serialVersionUID = -3243126139747941216L;
 	private Integer userID;

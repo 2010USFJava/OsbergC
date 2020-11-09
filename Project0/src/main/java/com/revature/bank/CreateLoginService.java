@@ -6,12 +6,30 @@ import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 
+/**
+ * The CreateLogin Service class contains the functionality for creating a
+ * login.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class CreateLoginService extends Service {
 	public CreateLoginService() {
 		super();
 		serviceName = "Create Login";
 	}
 
+	/**
+	 * The performService method overrides the parent method in order to query and
+	 * verify user input for further use.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return boolean The return type determines if the main menu loop with
+	 *         continue functioning.
+	 */
 	@Override
 	public boolean performService(Role role) {
 		System.out.println("Please enter a username.");
@@ -26,6 +44,16 @@ public class CreateLoginService extends Service {
 		return true;
 	}
 
+	/**
+	 * The createLogin method reads in all logins as an ArrayList, compares the
+	 * parameters with the database for duplicates, instantiates a new login, adds
+	 * it to the list, and writes all logins to a file.
+	 * <p>
+	 * 
+	 * @param role The role parameter is the wrapper class identity for the user of
+	 *             the program. It contains references to non-package classes.
+	 * @return ArrayList<Login> The return statement returns the new list of Login objects.
+	 */
 	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
 		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);

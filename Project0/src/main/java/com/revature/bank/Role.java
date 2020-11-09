@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import com.revature.bank.RoleServices.roleName;
 import com.revature.util.FileManager;
 
+/**
+ * The Role class represents the user and their information. It also contains
+ * references to non-package classes used for the various utilities.
+ * <p>
+ * 
+ * @author Christopher Osberg
+ *
+ */
 public class Role {
 	private RoleServices roleServices;
 	private FileManager fileManager;
@@ -11,7 +19,7 @@ public class Role {
 	private String givenName;
 	private ArrayList<Integer> accountNumbers;
 	private roleName roleName;
-	
+
 	public Role() {
 		super();
 		this.roleServices = new RoleServices();
@@ -61,5 +69,5 @@ public class Role {
 	public void setRoleName(roleName roleName) {
 		this.roleName = roleName;
 	}
-	
+
 }
