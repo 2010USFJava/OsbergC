@@ -1,5 +1,6 @@
 package com.revature.bank;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ public class MenuFormatter {
 			System.out.println("\tAccount Number\tAccount Type\tBalance");
 			for (Account account : accounts) {
 				System.out.println((accounts.indexOf(account) + 1) + ".\t" + account.getAccountNumber() + "\t\t"
-						+ account.getAccountType() + "\t" + account.getBalance());
+						+ account.getAccountType() + "\t" + account.getBalance().setScale(2, RoundingMode.HALF_EVEN));
 			}
 		}
 	}

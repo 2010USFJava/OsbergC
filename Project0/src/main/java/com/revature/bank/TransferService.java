@@ -1,6 +1,7 @@
 package com.revature.bank;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
@@ -80,7 +81,7 @@ public class TransferService extends Service {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
 		BigDecimal bdDiff = accounts.get(selectedAccountIndex).getBalance().subtract(bdWithdrawal);
-		if (bdDiff.compareTo(BigDecimal.valueOf(-0.005)) > 0) {
+		if (bdDiff.compareTo(BigDecimal.ZERO) >= 0) {
 			accounts.get(selectedAccountIndex).setBalance(bdDiff);
 		} else {
 			System.out.println("Error: Insufficient funds");

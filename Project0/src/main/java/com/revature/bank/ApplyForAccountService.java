@@ -109,12 +109,12 @@ public class ApplyForAccountService extends Service {
 		}
 		switch (iAccountType) {
 		case 1:
-			accountApplications.add(new Account(accountNumber, "checking", userIDs, BigDecimal.valueOf(0.00)));
+			accountApplications.add(new Account(accountNumber, "checking", userIDs, new BigDecimal("0")));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for checking account number " + accountNumber + ".\n");
 			break;
 		case 2:
-			accountApplications.add(new Account(accountNumber, "savings ", userIDs, BigDecimal.valueOf(0.00)));
+			accountApplications.add(new Account(accountNumber, "savings ", userIDs, new BigDecimal("0")));
 			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
@@ -122,8 +122,6 @@ public class ApplyForAccountService extends Service {
 			System.out.println("Error: Invalid selection");
 			break;
 		}
-		// Adjusts display mode of the balance
-		accountApplications.get(accountApplications.size() - 1).getBalance().setScale(2, RoundingMode.HALF_EVEN);
 		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
 		BankLogger.logWriteItems(accountApplications);
 	}

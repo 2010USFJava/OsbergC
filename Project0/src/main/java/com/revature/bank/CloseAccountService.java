@@ -1,7 +1,10 @@
 package com.revature.bank;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
+import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
 
@@ -53,10 +56,15 @@ public class CloseAccountService extends Service {
 		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
 		BankLogger.logReadItems(accounts);
 		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
-		accounts.remove(accounts.get(selectedAccountIndex));
-		BankLogger.logMessage("info", "Closed account number " + iAccountNumber + ".\n");
-		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
-		BankLogger.logWriteItems(accounts);
+		if (role.getRoleName() != roleName.CUSTOMER || accounts.get(selectedAccountIndex).getBalance()
+				.setScale(2, RoundingMode.HALF_EVEN).compareTo(BigDecimal.ZERO) == 0) {
+			accounts.remove(accounts.get(selectedAccountIndex));
+			BankLogger.logMessage("info", "Closed account number " + iAccountNumber + ".\n");
+			role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
+			BankLogger.logWriteItems(accounts);
+		} else {
+			System.out.println("Error: The account may not be closed unless the balance is zero.");
+		}
 	}
 
 }

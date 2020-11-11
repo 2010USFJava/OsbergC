@@ -17,6 +17,7 @@ public class CustomerServices extends RoleServices {
 			new WithdrawService(),
 			new TransferService(),
 			new ApplyForAccountService(),
+			new CloseAccountService(),
 			new LogoffService(),
 			new QuitService()
 			};
