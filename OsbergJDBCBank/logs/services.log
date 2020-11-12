@@ -1209,3 +1209,17 @@ givenName: Chewbacca
 [INFO ] 2020-11-11 09:14:34.462 [main] BankLogger - Viewed accounts for user number 3.
 
 [INFO ] 2020-11-11 09:14:39.411 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-11 19:27:47.678 [main] BankLogger - ArrayList read in:
+[Login [userID=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userID=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userID=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userID=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-11 19:27:47.690 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-11 19:27:47.690 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-11 19:27:48.792 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-11 19:27:48.793 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-11 19:27:51.668 [main] BankLogger - The user quit the application.
