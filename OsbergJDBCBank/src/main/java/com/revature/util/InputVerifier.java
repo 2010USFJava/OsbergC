@@ -2,6 +2,8 @@ package com.revature.util;
 
 import java.math.BigDecimal;
 
+import com.revature.exception.InvalidInputException;
+
 /**
  * The InputVerifier class contains the functionality for verifying Integer and
  * BigDecimal input.
@@ -23,12 +25,10 @@ public class InputVerifier {
 		try {
 			iSelection = Integer.parseInt(sSelection);
 			if (iSelection < low || iSelection > high) {
-				System.out.println("Error: Invalid input.");
-				return -1;
+				throw new InvalidInputException("Exception: Invalid input");
 			}
 		} catch (Exception e) {
-			System.out.println("Error: Invalid input");
-			return -1;
+			throw new InvalidInputException("Exception: Invalid input");
 		}
 		return iSelection;
 	}
@@ -44,12 +44,10 @@ public class InputVerifier {
 		try {
 			selection = new BigDecimal(sSelection);
 			if (selection.compareTo(low) + selection.compareTo(high) != 0) {
-				System.out.println("Error: Invalid input.");
-				return BigDecimal.valueOf(-1);
+				throw new InvalidInputException("Exception: Invalid input");
 			}
 		} catch (Exception e) {
-			System.out.println("Error: Invalid input");
-			return BigDecimal.valueOf(-1);
+			throw new InvalidInputException("Exception: Invalid input");
 		}
 		return selection;
 	}

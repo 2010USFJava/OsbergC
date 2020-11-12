@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.NonZeroBalanceException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 
 /**
@@ -35,12 +38,18 @@ public class CloseAccountService extends Service {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
-				"Please enter the number for the account you wish to close.", FileManager.ACCOUNTS_FILE);
-		if (iAccountNumber < 0) {
-			return true;
+		Integer iAccountNumber = null;
+		try {
+			iAccountNumber = obtainTargetUserAccountNumber(role,
+					"Please enter the number for the account you wish to close.", FileManager.ACCOUNTS_FILE);
+			closeAccount(role, iAccountNumber);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
+		} catch (NonZeroBalanceException e) {
+			System.out.println(e.getMessage());
 		}
-		closeAccount(role, iAccountNumber);
 		return true;
 	}
 
@@ -63,7 +72,7 @@ public class CloseAccountService extends Service {
 			role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
 			BankLogger.logWriteItems(accounts);
 		} else {
-			System.out.println("Error: The account may not be closed unless the balance is zero.");
+			throw new NonZeroBalanceException("Exception: Non-zero balance");
 		}
 	}
 

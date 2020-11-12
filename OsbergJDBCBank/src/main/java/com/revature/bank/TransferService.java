@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.InsufficientFundsException;
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -35,33 +39,54 @@ public class TransferService extends Service {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iWithdrawalAccountNumber = obtainTargetUserAccountNumber(role,
-				"From which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
-		if (iWithdrawalAccountNumber < 0) {
-			return true;
+		Integer iWithdrawalAccountNumber = null;
+		try {
+			iWithdrawalAccountNumber = obtainTargetUserAccountNumber(role,
+					"From which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
 		}
 //		Integer iDepositAccountNumber = obtainTargetUserAccountNumber(role,
 //				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
 		System.out.println("Please enter the user ID for the account you wish you transfer to.");
 		String sDepositUserID = scanner.nextLine();
-		Integer iDepositUserID = InputVerifier.verifyIntegerInput(sDepositUserID, 0, Integer.MAX_VALUE);
-		if (iDepositUserID < 0) {
+		Integer iDepositUserID = null;
+		try {
+			iDepositUserID = InputVerifier.verifyIntegerInput(sDepositUserID, 0, Integer.MAX_VALUE);
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
-		Integer iDepositAccountNumber = useUserIDToGetTargetAccount(role,
-				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE, iDepositUserID);
-		if (iDepositAccountNumber < 0) {
+		Integer iDepositAccountNumber = null;
+		try {
+			iDepositAccountNumber = useUserIDToGetTargetAccount(role,
+					"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE, iDepositUserID);
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
 		System.out.println("How much would you like to transfer?");
 		String sTransfer = scanner.nextLine();
-		BigDecimal bdTransfer = InputVerifier.verifyBigDecimalInput(sTransfer, new BigDecimal(0),
-				new BigDecimal(Integer.MAX_VALUE));
+		BigDecimal bdTransfer = null;
+		try {
+			bdTransfer = InputVerifier.verifyBigDecimalInput(sTransfer, new BigDecimal(0),
+					new BigDecimal(Integer.MAX_VALUE));
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		}
 		if (bdTransfer.intValue() < 0) {
 			return true;
 		}
-		if (makeWithdrawal(role, iWithdrawalAccountNumber, bdTransfer).compareTo(BigDecimal.valueOf(0)) > -1) {
-			makeDeposit(role, iDepositAccountNumber, bdTransfer);
+		try {
+			if (makeWithdrawal(role, iWithdrawalAccountNumber, bdTransfer).compareTo(BigDecimal.valueOf(0)) > -1) {
+				makeDeposit(role, iDepositAccountNumber, bdTransfer);
+			}
+		} catch (InsufficientFundsException e) {
+			System.out.println(e.getMessage());
+			return true;
 		}
 		return true;
 	}
@@ -83,8 +108,7 @@ public class TransferService extends Service {
 		if (bdDiff.compareTo(BigDecimal.ZERO) >= 0) {
 			accounts.get(selectedAccountIndex).setBalance(bdDiff);
 		} else {
-			System.out.println("Error: Insufficient funds");
-			return BigDecimal.valueOf(-1);
+			throw new InsufficientFundsException("Exception: Insufficient funds");
 		}
 		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
 		BankLogger.logMessage("info", "Made a withdrawal of " + bdWithdrawal + " from account number " + iAccountNumber

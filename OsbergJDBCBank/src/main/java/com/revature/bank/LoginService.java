@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.WrongUsernameOrPasswordException;
 import com.revature.util.FileManager;
 
 /**
@@ -35,7 +36,11 @@ public class LoginService extends Service {
 		String username = scanner.nextLine();
 		System.out.println("Please enter your password.");
 		String password = scanner.nextLine();
-		validateLogin(role, username, password);
+		try {
+			validateLogin(role, username, password);
+		} catch (WrongUsernameOrPasswordException e) {
+			System.out.println(e.getMessage());
+		}
 		return true;
 	}
 
@@ -76,20 +81,17 @@ public class LoginService extends Service {
 						role.setRoleName(roleName.ADMIN);
 						break;
 					default:
-						System.out.println("Error: Unrecognized role");
 						break;
 					}
 					BankLogger.logMessage("info", "Logged in as user number " + role.getUserID() + "\n");
 					return role.getUserID();
 				} else {
-					System.out.println("Your username and/or password was incorrect.");
 					BankLogger.logMessage("info", "Attempted login as user number " + login.getUserID() + "\n");
-					return login.getUserID();
+					throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
 				}
 			}
 		}
-		System.out.println("Your username and/or password was incorrect.");
 		BankLogger.logMessage("info", "Attempted login as \"" + username + "\"\n");
-		return -1;
+		throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
 	}
 }

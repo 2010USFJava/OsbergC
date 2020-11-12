@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -42,19 +45,20 @@ public abstract class Service {
 	}
 
 	Integer obtainUserID(Role role) {
-		Integer iUserID;
+		Integer iUserID = null;
 		if (role.getRoleName() == roleName.CUSTOMER) {
 			iUserID = role.getUserID();
 		} else {
 			System.out.println("Please enter the user's ID.");
 			String sUserID = scanner.nextLine();
-			iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
-			if (iUserID < 0) {
+			try {
+				iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
 				return -1;
 			}
 			if (!userExists(role, iUserID)) {
-				System.out.println("Error: User does not exist");
-				return -1;
+				throw new UserDoesNotExistException("Exception: User does not exist");
 			}
 		}
 		return iUserID;
@@ -106,10 +110,7 @@ public abstract class Service {
 	 * @return Integer Returns the chosen account's number.
 	 */
 	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount, String fileName) {
-		Integer iUserID;
-		if ((iUserID = obtainUserID(role)) < 0) {
-			return -1;
-		}
+		Integer iUserID = obtainUserID(role);
 		return useUserIDToGetTargetAccount(role, instructionForChoosingAccount, fileName, iUserID);
 	}
 
@@ -134,13 +135,15 @@ public abstract class Service {
 		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID, fileName);
 		MenuFormatter.displayAccountMenu(role, userAccounts);
 		if (userAccounts.isEmpty()) {
-			System.out.println("The user has no accounts.");
-			return -1;
+			throw new NoAccountsException("Exception: User has no accounts");
 		} else {
 			System.out.println(instructionForChoosingAccount);
 			String sAccountSelection = scanner.nextLine();
-			Integer iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
-			if (iAccountSelection < 0) {
+			Integer iAccountSelection = null;
+			try {
+				iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
 				return -1;
 			}
 			return userAccounts.get(iAccountSelection - 1).getAccountNumber();

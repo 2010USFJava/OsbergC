@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.DuplicateUserException;
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -39,16 +42,22 @@ public class ApplyForAccountService extends Service {
 		System.out.println("1. Checking Account");
 		System.out.println("2. Savings Account");
 		String sAccountType = scanner.nextLine();
-		Integer iAccountType = InputVerifier.verifyIntegerInput(sAccountType, 0, 3);
-		if (iAccountType < 0) {
+		Integer iAccountType = null;
+		try {
+			iAccountType = InputVerifier.verifyIntegerInput(sAccountType, 0, 3);
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
 		System.out.println("Is this a joint account?");
 		System.out.println("1. Yes");
 		System.out.println("2. No");
 		String sIsJointAccount = scanner.nextLine();
-		Integer iIsJointAccount = InputVerifier.verifyIntegerInput(sIsJointAccount, 0, 3);
-		if (iIsJointAccount < 0) {
+		Integer iIsJointAccount = null;
+		try {
+			iIsJointAccount = InputVerifier.verifyIntegerInput(sIsJointAccount, 0, 3);
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
 		ArrayList<Integer> accountUserIDs = new ArrayList<>();
@@ -57,29 +66,48 @@ public class ApplyForAccountService extends Service {
 		case 1:
 			System.out.println("Please enter the user ID of the other user.");
 			String sUserID = scanner.nextLine();
-			Integer iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
-			if (iUserID < 0) {
+			Integer iUserID = null;
+			try {
+				iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
+				checkDuplicateUsers(role, iUserID);
+				if (userDoesExist(role, iUserID)) {
+					accountUserIDs.add(iUserID);
+					createAccountApplication(role, iAccountType, accountUserIDs);
+				}
+			} catch (InvalidInputException e) {
+				System.out.println(e.getMessage());
 				return true;
-			}
-			if (iUserID.intValue() == role.getUserID()) {
-				System.out.println("Error: Duplicate user ID.");
+			} catch (DuplicateUserException e) {
+				System.out.println(e.getMessage());
 				return true;
-			}
-			if (!userExists(role, iUserID)) {
+			} catch (UserDoesNotExistException e) {
+				System.out.println(e.getMessage());
 				return true;
-			} else {
-				accountUserIDs.add(iUserID);
-				createAccountApplication(role, iAccountType, accountUserIDs);
 			}
 			break;
 		case 2:
 			createAccountApplication(role, iAccountType, accountUserIDs);
 			break;
 		default:
-			System.out.println("Error: Invalid input");
 			break;
 		}
 		return true;
+	}
+
+	private boolean userDoesExist(Role role, Integer iUserID) {
+		if (!userExists(role, iUserID)) {
+			throw new UserDoesNotExistException("Exception: User does not exist");
+		} else {
+			return true;
+		}
+	}
+
+	private boolean checkDuplicateUsers(Role role, Integer iUserID) {
+		boolean duplicateUsers = iUserID.intValue() == role.getUserID();
+		if (duplicateUsers) {
+			throw new DuplicateUserException("Exception: Duplicate user");
+		}
+		return duplicateUsers;
 	}
 
 	/**
@@ -118,7 +146,6 @@ public class ApplyForAccountService extends Service {
 					+ " applied for savings account number " + accountNumber + ".\n");
 			break;
 		default:
-			System.out.println("Error: Invalid selection");
 			break;
 		}
 		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);

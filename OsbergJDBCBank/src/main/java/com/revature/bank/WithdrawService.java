@@ -2,6 +2,10 @@ package com.revature.bank;
 
 import java.math.BigDecimal;
 
+import com.revature.exception.InsufficientFundsException;
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -32,19 +36,31 @@ public class WithdrawService extends TransferService {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
-				"From which account would you like to make a withdrawal?", FileManager.ACCOUNTS_FILE);
-		if (iAccountNumber < 0) {
-			return true;
+		Integer iAccountNumber = null;
+		try {
+			iAccountNumber = obtainTargetUserAccountNumber(role,
+					"From which account would you like to make a withdrawal?", FileManager.ACCOUNTS_FILE);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
 		}
 		System.out.println("How much would you like to withdraw?");
 		String sWithdrawal = scanner.nextLine();
-		BigDecimal bdWithdrawal = InputVerifier.verifyBigDecimalInput(sWithdrawal, new BigDecimal(0),
-				new BigDecimal(Integer.MAX_VALUE));
-		if (bdWithdrawal.intValue() < 0) {
+		BigDecimal bdWithdrawal = null;
+		try {
+			bdWithdrawal = InputVerifier.verifyBigDecimalInput(sWithdrawal, new BigDecimal(0),
+					new BigDecimal(Integer.MAX_VALUE));
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
-		makeWithdrawal(role, iAccountNumber, bdWithdrawal);
+		try {
+			makeWithdrawal(role, iAccountNumber, bdWithdrawal);
+		} catch (InsufficientFundsException e) {
+			System.out.println(e.getMessage());
+			return true;
+		}
 		return true;
 	}
 

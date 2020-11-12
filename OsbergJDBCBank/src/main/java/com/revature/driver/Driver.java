@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.revature.bank.MenuFormatter;
 import com.revature.bank.Role;
 import com.revature.bank.Service;
+import com.revature.exception.InvalidInputException;
 
 public class Driver {
 	private static Role role = new Role();
@@ -29,16 +30,14 @@ public class Driver {
 			choice = Integer.parseInt(line)-1;
 		}
 		catch(Exception e) {
-			System.out.println("Error: Please enter a valid number.");
-			return continueServices;
+			throw new InvalidInputException("Exception: Invalid input");
 		}
 		if(-1<choice && choice<servicesArray.length) {
 			continueServices = servicesArray[choice].performService(role);
 			return continueServices;
 		}
 		else {
-			System.out.println("Error: Please enter a valid number.");
-			return continueServices;
+			throw new InvalidInputException("Exception: Invalid input");
 		}
 	}
 }

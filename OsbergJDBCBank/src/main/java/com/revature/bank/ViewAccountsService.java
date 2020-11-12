@@ -3,6 +3,7 @@ package com.revature.bank;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 
 /**
@@ -32,9 +33,11 @@ public class ViewAccountsService extends Service {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iUserID;
-		if ((iUserID = obtainUserID(role)) < 0) {
-			return true;
+		Integer iUserID = null;
+		try {
+			iUserID = obtainUserID(role);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
 		}
 		showAccounts(role, iUserID);
 		System.out.println("Press [Enter] to continue.");

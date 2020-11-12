@@ -2,6 +2,9 @@ package com.revature.bank;
 
 import java.math.BigDecimal;
 
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -32,16 +35,23 @@ public class DepositService extends TransferService {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
-				"Into which account would you like to make a deposit?", FileManager.ACCOUNTS_FILE);
-		if (iAccountNumber < 0) {
-			return true;
+		Integer iAccountNumber = null;
+		try {
+			iAccountNumber = obtainTargetUserAccountNumber(role, "Into which account would you like to make a deposit?",
+					FileManager.ACCOUNTS_FILE);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
 		}
 		System.out.println("How much would you like to deposit?");
 		String sDeposit = scanner.nextLine();
-		BigDecimal bdDeposit = InputVerifier.verifyBigDecimalInput(sDeposit, new BigDecimal(0),
-				new BigDecimal(Integer.MAX_VALUE));
-		if (bdDeposit.intValue() < 0) {
+		BigDecimal bdDeposit = null;
+		try {
+			bdDeposit = InputVerifier.verifyBigDecimalInput(sDeposit, new BigDecimal(0),
+					new BigDecimal(Integer.MAX_VALUE));
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 			return true;
 		}
 		makeDeposit(role, iAccountNumber, bdDeposit);

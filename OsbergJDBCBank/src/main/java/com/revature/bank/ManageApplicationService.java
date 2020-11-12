@@ -3,6 +3,9 @@ package com.revature.bank;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.InvalidInputException;
+import com.revature.exception.NoAccountsException;
+import com.revature.exception.UserDoesNotExistException;
 import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
@@ -33,19 +36,26 @@ public class ManageApplicationService extends Service {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		Integer iAccountNumber = obtainTargetUserAccountNumber(role,
-				"Please enter the number for the application you would like to manage.",
-				FileManager.ACCOUNT_APPLICATIONS_FILE);
-		Integer iAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNT_APPLICATIONS_FILE);
-		System.out.println("Approve or deny this account?");
-		System.out.println("1. Approve");
-		System.out.println("2. Deny");
-		String sApproveOrDeny = scanner.nextLine();
-		Integer iApproveOrDeny = InputVerifier.verifyIntegerInput(sApproveOrDeny, 0, 3);
-		if (iApproveOrDeny < 0) {
-			return true;
+		Integer iAccountNumber = null;
+		try {
+			iAccountNumber = obtainTargetUserAccountNumber(role,
+					"Please enter the number for the application you would like to manage.",
+					FileManager.ACCOUNT_APPLICATIONS_FILE);
+			Integer iAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNT_APPLICATIONS_FILE);
+			System.out.println("Approve or deny this account?");
+			System.out.println("1. Approve");
+			System.out.println("2. Deny");
+			String sApproveOrDeny = scanner.nextLine();
+			Integer iApproveOrDeny = null;
+			iApproveOrDeny = InputVerifier.verifyIntegerInput(sApproveOrDeny, 0, 3);
+			handleApplication(role, iAccountIndex, iApproveOrDeny);
+		} catch (UserDoesNotExistException e) {
+			System.out.println(e.getMessage());
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
 		}
-		handleApplication(role, iAccountIndex, iApproveOrDeny);
 		return true;
 	}
 
@@ -83,7 +93,6 @@ public class ManageApplicationService extends Service {
 			BankLogger.logMessage("info", "Account number " + accountNumber + " was denied.\n");
 			break;
 		default:
-			System.out.println("Error: Invalid input");
 			break;
 		}
 	}

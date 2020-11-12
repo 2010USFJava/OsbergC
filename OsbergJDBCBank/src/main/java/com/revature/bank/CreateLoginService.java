@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.DuplicateUsernameException;
+import com.revature.exception.PasswordVerificationException;
 import com.revature.util.FileManager;
 
 /**
@@ -40,7 +42,13 @@ public class CreateLoginService extends Service {
 		String passwordConfirmation = scanner.nextLine();
 		System.out.println("Please enter your real name.");
 		String givenName = scanner.nextLine();
-		createLogin(role, username, password, passwordConfirmation, givenName);
+		try {
+			createLogin(role, username, password, passwordConfirmation, givenName);
+		} catch (DuplicateUsernameException e) {
+			System.out.println(e.getMessage());
+		} catch (PasswordVerificationException e) {
+			System.out.println(e.getMessage());
+		}
 		return true;
 	}
 
@@ -52,7 +60,8 @@ public class CreateLoginService extends Service {
 	 * 
 	 * @param role The role parameter is the wrapper class identity for the user of
 	 *             the program. It contains references to non-package classes.
-	 * @return ArrayList<Login> The return statement returns the new list of Login objects.
+	 * @return ArrayList<Login> The return statement returns the new list of Login
+	 *         objects.
 	 */
 	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
@@ -65,8 +74,7 @@ public class CreateLoginService extends Service {
 		ArrayList<String> usernameList = role.getFileManager().getAllLoginUsernames(role, logins);
 		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
 		if (usernameList.contains(username)) {
-			System.out.println("The username was already taken.");
-			return logins;
+			throw new DuplicateUsernameException("Exception: Username taken");
 		} else {
 			if (password.equals(passwordConfirmation)) {
 				int userID = 1;
@@ -79,8 +87,7 @@ public class CreateLoginService extends Service {
 								+ password + "\nroleService: " + roleName.CUSTOMER + "\ngivenName: " + givenName
 								+ "\n");
 			} else {
-				System.out.println("The passwords did not match.");
-				return logins;
+				throw new PasswordVerificationException("Exception: Passwords did not match");
 			}
 		}
 		role.getFileManager().writeItemsToFile(logins, FileManager.LOGINS_FILE);
