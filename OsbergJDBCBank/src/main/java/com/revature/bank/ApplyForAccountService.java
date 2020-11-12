@@ -1,8 +1,7 @@
 package com.revature.bank;
 
-import java.util.ArrayList;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
 import com.revature.util.FileManager;
