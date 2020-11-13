@@ -20,7 +20,7 @@ public class RoleServices {
 		return servicesArray;
 	}
 	
-	enum roleName {
+	public enum roleName {
 		CUSTOMER, EMPLOYEE, ADMIN
 	}
 }

@@ -62,7 +62,7 @@ public class LoginService extends Service {
 					switch (login.getRole()) {
 					case CUSTOMER:
 						role.setRoleServices(new CustomerServices());
-						role.setUserID(login.getUserID());
+						role.setUserID(login.getUserId());
 						role.setGivenName(login.getGivenName());
 						ArrayList<Account> accounts = role.getFileManager()
 								.readItemsFromFile(FileManager.ACCOUNTS_FILE);
@@ -72,12 +72,12 @@ public class LoginService extends Service {
 						break;
 					case EMPLOYEE:
 						role.setRoleServices(new EmployeeServices());
-						role.setUserID(login.getUserID());
+						role.setUserID(login.getUserId());
 						role.setRoleName(roleName.EMPLOYEE);
 						break;
 					case ADMIN:
 						role.setRoleServices(new AdminServices());
-						role.setUserID(login.getUserID());
+						role.setUserID(login.getUserId());
 						role.setRoleName(roleName.ADMIN);
 						break;
 					default:
@@ -86,7 +86,7 @@ public class LoginService extends Service {
 					BankLogger.logMessage("info", "Logged in as user number " + role.getUserID() + "\n");
 					return role.getUserID();
 				} else {
-					BankLogger.logMessage("info", "Attempted login as user number " + login.getUserID() + "\n");
+					BankLogger.logMessage("info", "Attempted login as user number " + login.getUserId() + "\n");
 					throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
 				}
 			}

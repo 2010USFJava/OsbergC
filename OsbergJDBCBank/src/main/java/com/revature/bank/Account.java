@@ -27,10 +27,6 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Integer getAccountNumber() {
 		return accountNumber;
 	}

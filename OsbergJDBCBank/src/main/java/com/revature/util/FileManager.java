@@ -97,7 +97,7 @@ public class FileManager {
 	public ArrayList<Integer> getAllLoginUserIDs(Role role, ArrayList<Login> logins) {
 		ArrayList<Integer> userIDList = new ArrayList<>();
 		for (Login login : logins) {
-			userIDList.add(new Integer(login.getUserID()));
+			userIDList.add(new Integer(login.getUserId()));
 		}
 		BankLogger.logReadItems(userIDList);
 		return userIDList;
