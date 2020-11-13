@@ -1444,3 +1444,296 @@ givenName: Chewbacca
 []
 
 [INFO ] 2020-11-12 07:40:27.253 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-13 13:25:30.386 [main] BankLogger - ArrayList read in:
+[Login [userId=null, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=null, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=null, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=null, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 13:25:30.399 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:25:30.400 [main] BankLogger - Logged in as user number null
+
+[INFO ] 2020-11-13 13:25:31.387 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:25:31.388 [main] BankLogger - Viewed accounts for user number null.
+
+[INFO ] 2020-11-13 13:25:57.845 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:55:24.504 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:55:49.689 [main] BankLogger - ArrayList read in:
+[Login [userId=null, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=null, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=null, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=null, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 13:55:49.702 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:55:49.702 [main] BankLogger - Logged in as user number null
+
+[INFO ] 2020-11-13 13:57:47.068 [main] BankLogger - ArrayList read in:
+[Login [userId=null, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=null, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=null, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=null, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 13:57:47.090 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=520.00], Account [accountNumber=1, accountType=checking, userIDs=[3], balance=288.51]]
+
+[INFO ] 2020-11-13 13:58:15.520 [main] BankLogger - Logged in as user number null
+
+[INFO ] 2020-11-13 14:00:30.314 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:00:30.317 [main] BankLogger - Attempted login as "hsolo"
+
+[INFO ] 2020-11-13 14:02:27.168 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:02:27.172 [main] BankLogger - ArrayList read in:
+[lskywalker, lorgana]
+
+[INFO ] 2020-11-13 14:02:27.172 [main] BankLogger - ArrayList read in:
+[1, 2]
+
+[INFO ] 2020-11-13 14:02:27.172 [main] BankLogger - Created a new login with:
+userID: 3
+username: hsolo
+password: falcon
+roleService: CUSTOMER
+givenName: Han Solo
+
+[INFO ] 2020-11-13 14:02:27.174 [main] BankLogger - ArrayList written to file:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
+
+[INFO ] 2020-11-13 14:03:12.330 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:12.334 [main] BankLogger - ArrayList read in:
+[lskywalker, lorgana]
+
+[INFO ] 2020-11-13 14:03:12.334 [main] BankLogger - ArrayList read in:
+[1, 2]
+
+[INFO ] 2020-11-13 14:03:12.335 [main] BankLogger - Created a new login with:
+userID: 3
+username: hsolo
+password: falcon
+roleService: CUSTOMER
+givenName: Han Solo
+
+[INFO ] 2020-11-13 14:03:12.342 [main] BankLogger - ArrayList written to file:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
+
+[INFO ] 2020-11-13 14:03:30.649 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-13 14:03:51.508 [main] BankLogger - ArrayList read in:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
+
+[INFO ] 2020-11-13 14:03:51.515 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:51.515 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-13 14:03:59.568 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:59.569 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:59.569 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:59.569 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:03:59.572 [main] BankLogger - User number(s) [3] applied for checking account number 1.
+
+[INFO ] 2020-11-13 14:03:59.591 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:04.171 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:04.171 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:04.172 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:04.172 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:04.172 [main] BankLogger - User number(s) [3] applied for savings account number 2.
+
+[INFO ] 2020-11-13 14:04:04.173 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:11.679 [main] BankLogger - User number 3 logged off.
+[INFO ] 2020-11-13 14:04:23.799 [main] BankLogger - ArrayList read in:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo]]
+
+[INFO ] 2020-11-13 14:04:23.799 [main] BankLogger - ArrayList read in:
+[lskywalker, lorgana, hsolo]
+
+[INFO ] 2020-11-13 14:04:23.799 [main] BankLogger - ArrayList read in:
+[1, 2, 3]
+
+[INFO ] 2020-11-13 14:04:23.799 [main] BankLogger - Created a new login with:
+userID: 4
+username: chewie
+password: bowcaster
+roleService: CUSTOMER
+givenName: Chewbacca
+
+[INFO ] 2020-11-13 14:04:23.802 [main] BankLogger - ArrayList written to file:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 14:04:35.039 [main] BankLogger - ArrayList read in:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 14:04:35.041 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:35.041 [main] BankLogger - Logged in as user number 4
+
+[INFO ] 2020-11-13 14:04:41.159 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:04:41.162 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:41.162 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:41.163 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:41.163 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:41.163 [main] BankLogger - User number(s) [4, 3] applied for savings account number 3.
+
+[INFO ] 2020-11-13 14:04:41.165 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:43.126 [main] BankLogger - User number 4 logged off.
+[INFO ] 2020-11-13 14:04:46.698 [main] BankLogger - ArrayList read in:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 14:04:46.700 [main] BankLogger - Logged in as user number 1
+
+[INFO ] 2020-11-13 14:04:50.208 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:04:50.213 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:51.440 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:52.377 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:04:52.379 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:52.383 [main] BankLogger - Account number 1 was approved.
+
+[INFO ] 2020-11-13 14:04:52.384 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:54.409 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:04:54.412 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:55.260 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:55.838 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:55.841 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:55.844 [main] BankLogger - Account number 2 was approved.
+
+[INFO ] 2020-11-13 14:04:55.844 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:57.708 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:04:57.711 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:58.508 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:59.299 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:59.301 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:04:59.306 [main] BankLogger - Account number 3 was approved.
+
+[INFO ] 2020-11-13 14:04:59.306 [main] BankLogger - ArrayList written to file:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:02.998 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:05:02.999 [main] BankLogger - ArrayList read in:
+[]
+
+[INFO ] 2020-11-13 14:05:09.808 [main] BankLogger - ArrayList read in:
+[1, 2, 3, 4]
+
+[INFO ] 2020-11-13 14:05:09.812 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:09.812 [main] BankLogger - Viewed accounts for user number 1.
+
+[INFO ] 2020-11-13 14:05:17.816 [main] BankLogger - The user quit the application.
+[INFO ] 2020-11-13 14:05:30.049 [main] BankLogger - ArrayList read in:
+[Login [userId=1, username=lskywalker, password=force, role=EMPLOYEE, givenName=Luke Skywalker], Login [userId=2, username=lorgana, password=alliance, role=ADMIN, givenName=Leia Organa], Login [userId=3, username=hsolo, password=falcon, role=CUSTOMER, givenName=Han Solo], Login [userId=4, username=chewie, password=bowcaster, role=CUSTOMER, givenName=Chewbacca]]
+
+[INFO ] 2020-11-13 14:05:30.062 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:30.062 [main] BankLogger - Logged in as user number 3
+
+[INFO ] 2020-11-13 14:05:34.801 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:34.802 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-13 14:05:36.927 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:40.103 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=0], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:40.114 [main] BankLogger - Made a deposit of 400 into account number 1. The account now has $400.
+
+[INFO ] 2020-11-13 14:05:41.939 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=400], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:44.991 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=400], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=0], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:44.994 [main] BankLogger - Made a deposit of 300 into account number 2. The account now has $300.
+
+[INFO ] 2020-11-13 14:05:46.658 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=400], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=300], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:49.891 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=400], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=300], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=0]]
+
+[INFO ] 2020-11-13 14:05:49.893 [main] BankLogger - Made a deposit of 600 into account number 3. The account now has $600.
+
+[INFO ] 2020-11-13 14:05:51.146 [main] BankLogger - ArrayList read in:
+[Account [accountNumber=1, accountType=checking, userIDs=[3], balance=400], Account [accountNumber=2, accountType=savings , userIDs=[3], balance=300], Account [accountNumber=3, accountType=savings , userIDs=[4, 3], balance=600]]
+
+[INFO ] 2020-11-13 14:05:51.147 [main] BankLogger - Viewed accounts for user number 3.
+
+[INFO ] 2020-11-13 14:05:58.504 [main] BankLogger - The user quit the application.

@@ -25,9 +25,9 @@ import com.revature.banklogger.BankLogger;
 public class FileManager {
 	ObjectInputStream objectInputStream;
 	ObjectOutputStream objectOutputStream;
-	public static final String ACCOUNTS_FILE = "accounts.txt";
-	public static final String ACCOUNT_APPLICATIONS_FILE = "accountApplications.txt";
-	public static final String LOGINS_FILE = "logins.txt";
+	public static final String ACCOUNTS_FILE = "./src/main/resources/accounts.txt";
+	public static final String ACCOUNT_APPLICATIONS_FILE = "./src/main/resources/accountApplications.txt";
+	public static final String LOGINS_FILE = "./src/main/resources/logins.txt";
 
 	/**
 	 * The writeItemsToFile method writes an ArrayList to a file.
