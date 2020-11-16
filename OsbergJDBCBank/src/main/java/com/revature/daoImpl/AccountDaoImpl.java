@@ -64,17 +64,19 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public void insertAccount(Account account) throws SQLException {
 		Connection connection = dbConFac.getConnection();
-		String sqlQuery = "insert into accounts values(?,?,?)";
+		String sqlQuery = "insert into accounts (accounttype,balance,status) values(?,?,?) returning accountnumber";
 		PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-		preparedStatement.setInt(1, account.getAccountNumber());
-		preparedStatement.setString(2, account.getAccountType());
-		preparedStatement.setBigDecimal(3, account.getBalance());
-		preparedStatement.executeUpdate();
+		preparedStatement.setString(1, account.getAccountType());
+		preparedStatement.setBigDecimal(2, account.getBalance());
+		preparedStatement.setString(3, "pending");
+		ResultSet resultSet = preparedStatement.executeQuery();
+		resultSet.next();
+		Integer accountNumber = resultSet.getInt(1);
 
 		for (Integer iUserId : account.getUserIDs()) {
 			String accountUsersSqlQuery = "insert into accountusers values(?,?)";
 			preparedStatement = connection.prepareStatement(accountUsersSqlQuery);
-			preparedStatement.setInt(1, account.getAccountNumber());
+			preparedStatement.setInt(1, accountNumber);
 			preparedStatement.setInt(2, iUserId);
 			preparedStatement.executeUpdate();
 		}
@@ -107,6 +109,25 @@ public class AccountDaoImpl implements AccountDao {
 		String sqlQuery = "delete from accounts where accountnumber = ?";
 		PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 		preparedStatement.setInt(1, iAccountNumber);
+		preparedStatement.executeUpdate();
+	}
+
+	@Override
+	public void approveAccount(Integer iAccountNumber) throws SQLException {
+		Connection connection = dbConFac.getConnection();
+		String sqlQuery = "update accounts set status = 'approved' where accountnumber = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+		preparedStatement.setInt(1, iAccountNumber);
+		preparedStatement.executeUpdate();
+	}
+
+	@Override
+	public void updateAccountBalance(Integer iAccountNumber, BigDecimal balance) throws SQLException {
+		Connection connection = dbConFac.getConnection();
+		String sqlQuery = "update accounts set balance = ? where accountnumber = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+		preparedStatement.setBigDecimal(1, balance);
+		preparedStatement.setInt(2, iAccountNumber);
 		preparedStatement.executeUpdate();
 	}
 }

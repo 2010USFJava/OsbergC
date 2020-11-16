@@ -6,7 +6,6 @@ import com.revature.exception.InsufficientFundsException;
 import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
-import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
 /**
@@ -39,11 +38,13 @@ public class WithdrawService extends TransferService {
 		Integer iAccountNumber = null;
 		try {
 			iAccountNumber = obtainTargetUserAccountNumber(role,
-					"From which account would you like to make a withdrawal?", FileManager.ACCOUNTS_FILE);
+					"From which account would you like to make a withdrawal?", "approved");
 		} catch (UserDoesNotExistException e) {
 			System.out.println(e.getMessage());
+			return true;
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
+			return true;
 		}
 		System.out.println("How much would you like to withdraw?");
 		String sWithdrawal = scanner.nextLine();

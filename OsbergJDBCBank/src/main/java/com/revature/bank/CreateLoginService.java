@@ -1,12 +1,13 @@
 package com.revature.bank;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
+
+import org.postgresql.util.PSQLException;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.DuplicateUsernameException;
 import com.revature.exception.PasswordVerificationException;
-import com.revature.util.FileManager;
 
 /**
  * The CreateLogin Service class contains the functionality for creating a
@@ -34,14 +35,29 @@ public class CreateLoginService extends Service {
 	 */
 	@Override
 	public boolean performService(Role role) {
-		System.out.println("Please enter a username.");
-		String username = scanner.nextLine();
-		System.out.println("Please enter a password.");
-		String password = scanner.nextLine();
-		System.out.println("Please confirm your password.");
-		String passwordConfirmation = scanner.nextLine();
-		System.out.println("Please enter your real name.");
-		String givenName = scanner.nextLine();
+		String username = null;
+		String password = null;
+		String passwordConfirmation = null;
+		String givenName = null;
+		if (role.getRoleName() != roleName.CUSTOMER) {
+			System.out.println("Please enter a username.");
+			username = scanner.nextLine();
+			System.out.println("Please enter a password.");
+			password = scanner.nextLine();
+			System.out.println("Please confirm the password.");
+			passwordConfirmation = scanner.nextLine();
+			System.out.println("Please enter the user's real name.");
+			givenName = scanner.nextLine();
+		} else {
+			System.out.println("Please enter a username.");
+			username = scanner.nextLine();
+			System.out.println("Please enter a password.");
+			password = scanner.nextLine();
+			System.out.println("Please confirm your password.");
+			passwordConfirmation = scanner.nextLine();
+			System.out.println("Please enter your real name.");
+			givenName = scanner.nextLine();
+		}
 		try {
 			createLogin(role, username, password, passwordConfirmation, givenName);
 		} catch (DuplicateUsernameException e) {
@@ -63,35 +79,22 @@ public class CreateLoginService extends Service {
 	 * @return ArrayList<Login> The return statement returns the new list of Login
 	 *         objects.
 	 */
-	private ArrayList<Login> createLogin(Role role, String username, String password, String passwordConfirmation,
+	private Login createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
-		BankLogger.logReadItems(logins);
-		// Default logins
-//		logins.add(new Login(1, "lskywalker", "force", roleName.EMPLOYEE, "Luke Skywalker"));
-//		logins.add(new Login(2, "lorgana", "alliance", roleName.ADMIN, "Leia Organa"));
-
-		ArrayList<String> usernameList = role.getFileManager().getAllLoginUsernames(role, logins);
-		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
-		if (usernameList.contains(username)) {
-			throw new DuplicateUsernameException("Exception: Username taken");
-		} else {
-			if (password.equals(passwordConfirmation)) {
-				int userID = 1;
-				while (userIDList.contains(userID)) {
-					userID++;
-				}
-				logins.add(new Login(new Integer(userID), username, password, roleName.CUSTOMER, givenName));
-				BankLogger.logMessage("info",
-						"Created a new login with:\nuserID: " + userID + "\nusername: " + username + "\npassword: "
-								+ password + "\nroleService: " + roleName.CUSTOMER + "\ngivenName: " + givenName
-								+ "\n");
-			} else {
-				throw new PasswordVerificationException("Exception: Passwords did not match");
+		Login login = new Login(null, username, password, roleName.CUSTOMER, givenName);
+		if (password.equals(passwordConfirmation)) {
+			try {
+				role.getLdi().insertLogin(login);
+			} catch (PSQLException e) {
+				throw new DuplicateUsernameException("Exception: Username taken");
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
+			BankLogger.logMessage("info", "Created a new login with:\nusername: " + username + "\npassword: " + password
+					+ "\nroleService: " + roleName.CUSTOMER + "\ngivenName: " + givenName + "\n");
+		} else {
+			throw new PasswordVerificationException("Exception: Passwords did not match");
 		}
-		role.getFileManager().writeItemsToFile(logins, FileManager.LOGINS_FILE);
-		BankLogger.logWriteItems(logins);
-		return logins;
+		return login;
 	}
 }

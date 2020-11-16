@@ -40,7 +40,7 @@ public class LogoffService extends Service {
 	 */
 	private void resetRole(Role role) {
 		System.out.println("You have been logged off.");
-		BankLogger.logMessage("info", "User number " + role.getUserID() + " logged off.");
+		BankLogger.logMessage("info", "User number " + role.getUserId() + " logged off.");
 		role.setRoleServices(new RoleServices());
 	}
 

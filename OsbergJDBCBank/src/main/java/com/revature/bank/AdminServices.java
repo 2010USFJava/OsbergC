@@ -18,6 +18,9 @@ public class AdminServices extends RoleServices {
 			new TransferService(),
 			new ManageApplicationService(),
 			new CloseAccountService(),
+			new CreateLoginService(),
+			new UpdateLoginService(),
+			new DeleteLoginService(),
 			new LogoffService(),
 			new QuitService() };
 

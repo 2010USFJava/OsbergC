@@ -2,15 +2,14 @@ package com.revature.bank;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.revature.bank.RoleServices.roleName;
-import com.revature.banklogger.BankLogger;
 import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
-import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
 /**
@@ -44,24 +43,26 @@ public abstract class Service {
 		return serviceName;
 	}
 
-	Integer obtainUserID(Role role) {
-		Integer iUserID = null;
+	Integer obtainUserId(Role role) {
+		String sUserId = null;
 		if (role.getRoleName() == roleName.CUSTOMER) {
-			iUserID = role.getUserID();
+			return role.getUserId();
 		} else {
 			System.out.println("Please enter the user's ID.");
-			String sUserID = scanner.nextLine();
+			sUserId = scanner.nextLine();
+			Login login = null;
 			try {
-				iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
-			} catch (InvalidInputException e) {
-				System.out.println(e.getMessage());
+				if ((login = role.getLdi().getLoginById(sUserId)) == null) {
+					throw new UserDoesNotExistException("Exception: User does not exist");
+				}
+				role.setUserId(login.getUserId());
+				role.setGivenName(login.getGivenName());
+			} catch (SQLException e) {
+				e.printStackTrace();
 				return -1;
 			}
-			if (!userExists(role, iUserID)) {
-				throw new UserDoesNotExistException("Exception: User does not exist");
-			}
+			return role.getUserId();
 		}
-		return iUserID;
 	}
 
 	/**
@@ -73,11 +74,11 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return boolean True is returned if a match is found.
 	 */
-	boolean userExists(Role role, Integer iUserID) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
-		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
-		return userIDList.contains(iUserID);
-	}
+//	boolean userExists(Role role, Integer iUserID) {
+//		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
+//		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
+//		return userIDList.contains(iUserID);
+//	}
 
 	/**
 	 * The accountExists method reads in all Accounts into an ArrayList, and
@@ -88,10 +89,14 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return boolean True is returned if a match is found.
 	 */
-	boolean accountExists(Role role, Integer iAccountNumber) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		ArrayList<Integer> accountNumberList = role.getFileManager().getAllAccountNumbers(role, accounts);
-		return accountNumberList.contains(iAccountNumber);
+	boolean accountExists(Role role, String usernameOrUserid) {
+		boolean exists = false;
+		try {
+			exists = role.getLdi().getLoginById(usernameOrUserid) != null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return exists;
 	}
 
 //	<T> boolean itemOfNumberExists(Role role, Integer iItemNumber, String fileName) {
@@ -109,9 +114,9 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return Integer Returns the chosen account's number.
 	 */
-	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount, String fileName) {
-		Integer iUserID = obtainUserID(role);
-		return useUserIDToGetTargetAccount(role, instructionForChoosingAccount, fileName, iUserID);
+	Integer obtainTargetUserAccountNumber(Role role, String instructionForChoosingAccount, String status) {
+		Integer iUserID = obtainUserId(role);
+		return useUserIdToGetTargetAccount(role, instructionForChoosingAccount, status, iUserID);
 	}
 
 	/**
@@ -130,9 +135,14 @@ public abstract class Service {
 	 *                                      the displayed menu.
 	 * @return Integer Returns the chosen account's number.
 	 */
-	Integer useUserIDToGetTargetAccount(Role role, String instructionForChoosingAccount, String fileName,
-			Integer iUserID) {
-		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, iUserID, fileName);
+	Integer useUserIdToGetTargetAccount(Role role, String instructionForChoosingAccount, String status,
+			Integer iUserId) {
+		ArrayList<Account> userAccounts = new ArrayList<>();
+		try {
+			userAccounts = (ArrayList<Account>) role.getAdi().getUserAccounts(iUserId, status);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		MenuFormatter.displayAccountMenu(role, userAccounts);
 		if (userAccounts.isEmpty()) {
 			throw new NoAccountsException("Exception: User has no accounts");
@@ -159,15 +169,15 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return Integer Returns the index of the account specified.
 	 */
-	Integer obtainAccountIndex(Role role, Integer iAccountNumber, String fileName) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
-		BankLogger.logReadItems(accounts);
-		Integer selectedAccountIndex = null;
-		for (Account account : accounts) {
-			if (account.getAccountNumber().equals(iAccountNumber)) {
-				selectedAccountIndex = accounts.indexOf(account);
-			}
-		}
-		return selectedAccountIndex;
-	}
+//	Integer obtainAccountIndex(Role role, Integer iAccountNumber, String fileName) {
+//		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(fileName);
+//		BankLogger.logReadItems(accounts);
+//		Integer selectedAccountIndex = null;
+//		for (Account account : accounts) {
+//			if (account.getAccountNumber().equals(iAccountNumber)) {
+//				selectedAccountIndex = accounts.indexOf(account);
+//			}
+//		}
+//		return selectedAccountIndex;
+//	}
 }

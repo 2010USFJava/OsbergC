@@ -1,10 +1,11 @@
 package com.revature.bank;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
-import com.revature.util.FileManager;
 
 /**
  * The ViewAccountsService class contains the functionality for viewing a user's
@@ -35,11 +36,17 @@ public class ViewAccountsService extends Service {
 	public boolean performService(Role role) {
 		Integer iUserID = null;
 		try {
-			iUserID = obtainUserID(role);
+			iUserID = obtainUserId(role);
 		} catch (UserDoesNotExistException e) {
 			System.out.println(e.getMessage());
+			return true;
 		}
-		showAccounts(role, iUserID);
+		try {
+			showAccounts(role, iUserID);
+		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
+			return true;
+		}
 		System.out.println("Press [Enter] to continue.");
 		scanner.nextLine();
 		return true;
@@ -54,12 +61,18 @@ public class ViewAccountsService extends Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return ArrayList<Account> Returns the user's accounts.
 	 */
-	private ArrayList<Account> showAccounts(Role role, Integer userID) {
-		ArrayList<Account> userAccounts = role.getFileManager().getUserAccounts(role, userID,
-				FileManager.ACCOUNTS_FILE);
+	private ArrayList<Account> showAccounts(Role role, Integer userId) {
+		ArrayList<Account> userAccounts = new ArrayList<>();
+		try {
+			userAccounts = (ArrayList<Account>) role.getAdi().getUserAccounts(userId, "approved");
+			if (userAccounts.isEmpty()) {
+				throw new NoAccountsException("Exception: User has no accounts");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		MenuFormatter.displayAccountMenu(role, userAccounts);
-		BankLogger.logMessage("info", "Viewed accounts for user number " + role.getUserID() + ".\n");
-
+		BankLogger.logMessage("info", "Viewed accounts for user number " + role.getUserId() + ".\n");
 		return userAccounts;
 	}
 }

@@ -13,6 +13,7 @@ public class CustomerServices extends RoleServices {
 	
 	private Service[] servicesArray = {
 			new ViewAccountsService(),
+			new ViewTransactionsService(),
 			new DepositService(),
 			new WithdrawService(),
 			new TransferService(),

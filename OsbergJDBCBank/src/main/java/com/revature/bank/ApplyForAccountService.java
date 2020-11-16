@@ -1,13 +1,13 @@
 package com.revature.bank;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.DuplicateUserException;
 import com.revature.exception.InvalidInputException;
 import com.revature.exception.UserDoesNotExistException;
-import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
 /**
@@ -60,19 +60,22 @@ public class ApplyForAccountService extends Service {
 			System.out.println(e.getMessage());
 			return true;
 		}
-		ArrayList<Integer> accountUserIDs = new ArrayList<>();
-		accountUserIDs.add(role.getUserID());
+		ArrayList<Integer> accountUserIds = new ArrayList<>();
+		accountUserIds.add(role.getUserId());
 		switch (iIsJointAccount) {
 		case 1:
 			System.out.println("Please enter the user ID of the other user.");
-			String sUserID = scanner.nextLine();
-			Integer iUserID = null;
+			String sUserId = scanner.nextLine();
+			Integer iUserId = null;
 			try {
-				iUserID = InputVerifier.verifyIntegerInput(sUserID, 0, Integer.MAX_VALUE);
-				checkDuplicateUsers(role, iUserID);
-				if (userDoesExist(role, iUserID)) {
-					accountUserIDs.add(iUserID);
-					createAccountApplication(role, iAccountType, accountUserIDs);
+				iUserId = InputVerifier.verifyIntegerInput(sUserId, 0, Integer.MAX_VALUE);
+				checkDuplicateUsers(role, iUserId);
+				Login login = role.getLdi().getLoginById(sUserId);
+				if (login != null) {
+					accountUserIds.add(iUserId);
+					createAccountApplication(role, iAccountType, accountUserIds);
+				} else {
+					throw new UserDoesNotExistException("Exception: User does not exist");
 				}
 			} catch (InvalidInputException e) {
 				System.out.println(e.getMessage());
@@ -83,10 +86,12 @@ public class ApplyForAccountService extends Service {
 			} catch (UserDoesNotExistException e) {
 				System.out.println(e.getMessage());
 				return true;
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 			break;
 		case 2:
-			createAccountApplication(role, iAccountType, accountUserIDs);
+			createAccountApplication(role, iAccountType, accountUserIds);
 			break;
 		default:
 			break;
@@ -94,16 +99,8 @@ public class ApplyForAccountService extends Service {
 		return true;
 	}
 
-	private boolean userDoesExist(Role role, Integer iUserID) {
-		if (!userExists(role, iUserID)) {
-			throw new UserDoesNotExistException("Exception: User does not exist");
-		} else {
-			return true;
-		}
-	}
-
 	private boolean checkDuplicateUsers(Role role, Integer iUserID) {
-		boolean duplicateUsers = iUserID.intValue() == role.getUserID();
+		boolean duplicateUsers = iUserID.intValue() == role.getUserId();
 		if (duplicateUsers) {
 			throw new DuplicateUserException("Exception: Duplicate user");
 		}
@@ -120,35 +117,25 @@ public class ApplyForAccountService extends Service {
 	 * @return boolean The return type determines if the main menu loop with
 	 *         continue functioning.
 	 */
-	private void createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIDs) {
-		ArrayList<Account> accountApplications = role.getFileManager()
-				.readItemsFromFile(FileManager.ACCOUNT_APPLICATIONS_FILE);
-		BankLogger.logReadItems(accountApplications);
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		BankLogger.logReadItems(accounts);
-		ArrayList<Integer> accountNumberList = role.getFileManager().getAllAccountNumbers(role, accountApplications);
-		BankLogger.logReadItems(accountApplications);
-		accountNumberList.addAll(role.getFileManager().getAllAccountNumbers(role, accounts));
-		BankLogger.logReadItems(role.getFileManager().getAllAccountNumbers(role, accounts));
-		int accountNumber = 1;
-		while (accountNumberList.contains(accountNumber)) {
-			accountNumber++;
+	private void createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIds) {
+		try {
+			switch (iAccountType) {
+			case 1:
+				role.getAdi().insertAccount(new Account(null, "checking", userIds, BigDecimal.ZERO));
+
+				BankLogger.logMessage("info",
+						"User number(s) " + userIds.toString() + " applied for a checking account.\n");
+				break;
+			case 2:
+				role.getAdi().insertAccount(new Account(null, "savings ", userIds, BigDecimal.ZERO));
+				BankLogger.logMessage("info",
+						"User number(s) " + userIds.toString() + " applied for a savings account.\n");
+				break;
+			default:
+				break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		switch (iAccountType) {
-		case 1:
-			accountApplications.add(new Account(accountNumber, "checking", userIDs, new BigDecimal("0")));
-			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
-					+ " applied for checking account number " + accountNumber + ".\n");
-			break;
-		case 2:
-			accountApplications.add(new Account(accountNumber, "savings ", userIDs, new BigDecimal("0")));
-			BankLogger.logMessage("info", "User number(s) " + userIDs.toString()
-					+ " applied for savings account number " + accountNumber + ".\n");
-			break;
-		default:
-			break;
-		}
-		role.getFileManager().writeItemsToFile(accountApplications, FileManager.ACCOUNT_APPLICATIONS_FILE);
-		BankLogger.logWriteItems(accountApplications);
 	}
 }

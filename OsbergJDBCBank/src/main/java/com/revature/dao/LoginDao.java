@@ -11,7 +11,12 @@ public interface LoginDao {
 
 	public void insertLogin(Login login) throws SQLException;
 
-	public Login getLoginByUserId(Integer iUserId) throws SQLException;
+	@Deprecated
+	public Login getLoginByUsername(String username) throws SQLException;
 	
-	public void deleteUser(Integer iUserId) throws SQLException;
+	public Login getLoginById(String usernameOrUserid) throws SQLException;
+	
+	public boolean deleteUser(Integer iUserId) throws SQLException;
+	
+	public void updateUser(Integer iUserId, String name) throws SQLException;
 }

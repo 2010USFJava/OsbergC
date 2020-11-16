@@ -25,15 +25,15 @@ public class DatabaseConnectionFactory {
 
 	public Connection getConnection() {
 		Connection connection = null;
-		Properties prop = new Properties();
-//		String url= "jdbc:postgresql://revature-osberg.cmbmxlvbcdgh.us-east-2.rds.amazonaws.com:5432/postgres";
+		Properties properties = new Properties();
+//		String url= "jdbc:postgresql://revature-osberg.cmbmxlvbcdgh.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=public";
 //		String username="protossarchon";
 //		String password="poweroverwhelming";
 
 		try {
-			prop.load(new FileReader("database.properties"));
-			connection = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"),
-					prop.getProperty("password"));
+			properties.load(new FileReader("./src/main/resources/database.properties"));
+			connection = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"),
+					properties.getProperty("password"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {

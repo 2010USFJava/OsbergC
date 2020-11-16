@@ -1,11 +1,10 @@
 package com.revature.bank;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import com.revature.bank.RoleServices.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.WrongUsernameOrPasswordException;
-import com.revature.util.FileManager;
 
 /**
  * The LoginService class contains the functionality for logging into the bank.
@@ -54,44 +53,40 @@ public class LoginService extends Service {
 	 * @return Integer Returns the user's ID if successful, or -1 if unsuccessful.
 	 */
 	private Integer validateLogin(Role role, String username, String password) {
-		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
-		BankLogger.logReadItems(logins);
-		for (Login login : logins) {
-			if (username.equals(login.getUsername())) {
-				if (password.equals(login.getPassword())) {
-					switch (login.getRole()) {
-					case CUSTOMER:
-						role.setRoleServices(new CustomerServices());
-						role.setUserID(login.getUserId());
-						role.setGivenName(login.getGivenName());
-						ArrayList<Account> accounts = role.getFileManager()
-								.readItemsFromFile(FileManager.ACCOUNTS_FILE);
-						BankLogger.logReadItems(accounts);
-						role.setAccountNumbers(role.getFileManager().getAllAccountNumbers(role, accounts));
-						role.setRoleName(roleName.CUSTOMER);
-						break;
-					case EMPLOYEE:
-						role.setRoleServices(new EmployeeServices());
-						role.setUserID(login.getUserId());
-						role.setRoleName(roleName.EMPLOYEE);
-						break;
-					case ADMIN:
-						role.setRoleServices(new AdminServices());
-						role.setUserID(login.getUserId());
-						role.setRoleName(roleName.ADMIN);
-						break;
-					default:
-						break;
-					}
-					BankLogger.logMessage("info", "Logged in as user number " + role.getUserID() + "\n");
-					return role.getUserID();
-				} else {
-					BankLogger.logMessage("info", "Attempted login as user number " + login.getUserId() + "\n");
-					throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
-				}
+		Login login = null;
+		try {
+			login = role.getLdi().getLoginById(username);
+			if (login == null) {
+				BankLogger.logMessage("info", "Attempted login as \"" + username + "\"\n");
+				throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		BankLogger.logMessage("info", "Attempted login as \"" + username + "\"\n");
-		throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
+		if (password.equals(login.getPassword())) {
+			switch (login.getRole()) {
+			case CUSTOMER:
+				role.setRoleServices(new CustomerServices());
+				role.setUserId(login.getUserId());
+				role.setGivenName(login.getGivenName());
+				role.setRoleName(roleName.CUSTOMER);
+				break;
+			case EMPLOYEE:
+				role.setRoleServices(new EmployeeServices());
+				role.setRoleName(roleName.EMPLOYEE);
+				break;
+			case ADMIN:
+				role.setRoleServices(new AdminServices());
+				role.setRoleName(roleName.ADMIN);
+				break;
+			default:
+				break;
+			}
+			BankLogger.logMessage("info", "Logged in as user number " + role.getUserId() + "\n");
+			return role.getUserId();
+		} else {
+			BankLogger.logMessage("info", "Attempted login as user number " + login.getUserId() + "\n");
+			throw new WrongUsernameOrPasswordException("Exception: Username and/or password were incorrect");
+		}
 	}
 }

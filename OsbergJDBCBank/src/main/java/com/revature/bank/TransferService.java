@@ -1,14 +1,13 @@
 package com.revature.bank;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.InsufficientFundsException;
 import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
-import com.revature.util.FileManager;
 import com.revature.util.InputVerifier;
 
 /**
@@ -42,27 +41,27 @@ public class TransferService extends Service {
 		Integer iWithdrawalAccountNumber = null;
 		try {
 			iWithdrawalAccountNumber = obtainTargetUserAccountNumber(role,
-					"From which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
+					"From which account would you like to transfer funds?", "approved");
 		} catch (UserDoesNotExistException e) {
 			System.out.println(e.getMessage());
+			return true;
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
+			return true;
 		}
-//		Integer iDepositAccountNumber = obtainTargetUserAccountNumber(role,
-//				"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE);
 		System.out.println("Please enter the user ID for the account you wish you transfer to.");
-		String sDepositUserID = scanner.nextLine();
-		Integer iDepositUserID = null;
+		String sDepositUserId = scanner.nextLine();
+		Integer iDepositUserId = null;
 		try {
-			iDepositUserID = InputVerifier.verifyIntegerInput(sDepositUserID, 0, Integer.MAX_VALUE);
+			iDepositUserId = InputVerifier.verifyIntegerInput(sDepositUserId, 0, Integer.MAX_VALUE);
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
 			return true;
 		}
 		Integer iDepositAccountNumber = null;
 		try {
-			iDepositAccountNumber = useUserIDToGetTargetAccount(role,
-					"To which account would you like to transfer funds?", FileManager.ACCOUNTS_FILE, iDepositUserID);
+			iDepositAccountNumber = useUserIdToGetTargetAccount(role,
+					"To which account would you like to transfer funds?", "approved", iDepositUserId);
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
 			return true;
@@ -102,17 +101,23 @@ public class TransferService extends Service {
 	 * @return BigDecimal Returns the amount of money in the account.
 	 */
 	BigDecimal makeWithdrawal(Role role, Integer iAccountNumber, BigDecimal bdWithdrawal) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
-		BigDecimal bdDiff = accounts.get(selectedAccountIndex).getBalance().subtract(bdWithdrawal);
-		if (bdDiff.compareTo(BigDecimal.ZERO) >= 0) {
-			accounts.get(selectedAccountIndex).setBalance(bdDiff);
-		} else {
-			throw new InsufficientFundsException("Exception: Insufficient funds");
+		Account account = null;
+		BigDecimal bdDiff = null;
+		try {
+			account = role.getAdi().getAccountByAccountNumber(iAccountNumber);
+			bdDiff = account.getBalance().subtract(bdWithdrawal);
+			if (bdDiff.compareTo(BigDecimal.ZERO) >= 0) {
+				role.getAdi().updateAccountBalance(iAccountNumber, bdDiff);
+				BankLogger.logMessage("info", "Made a withdrawal of $" + bdWithdrawal + " from account number "
+						+ iAccountNumber + ". The account now has $" + bdDiff + ".\n");
+				role.getTdi().insertTransaction(role.getUserId(), "Made a withdrawal of $" + bdWithdrawal + " from account number "
+						+ iAccountNumber + ". The account now has $" + bdDiff + ".\n");
+			} else {
+				throw new InsufficientFundsException("Exception: Insufficient funds");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
-		BankLogger.logMessage("info", "Made a withdrawal of " + bdWithdrawal + " from account number " + iAccountNumber
-				+ ". The account now has $" + bdDiff + ".\n");
 		return bdDiff;
 	}
 
@@ -128,13 +133,19 @@ public class TransferService extends Service {
 	 *         continue functioning.
 	 */
 	BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
-		ArrayList<Account> accounts = role.getFileManager().readItemsFromFile(FileManager.ACCOUNTS_FILE);
-		Integer selectedAccountIndex = obtainAccountIndex(role, iAccountNumber, FileManager.ACCOUNTS_FILE);
-		BigDecimal bdSum = accounts.get(selectedAccountIndex).getBalance().add(bdDeposit);
-		accounts.get(selectedAccountIndex).setBalance(bdSum);
-		role.getFileManager().writeItemsToFile(accounts, FileManager.ACCOUNTS_FILE);
-		BankLogger.logMessage("info", "Made a deposit of " + bdDeposit + " into account number " + iAccountNumber
-				+ ". The account now has $" + bdSum + ".\n");
+		Account account = null;
+		BigDecimal bdSum = null; 
+		try {
+			account = role.getAdi().getAccountByAccountNumber(iAccountNumber);
+			bdSum = account.getBalance().add(bdDeposit);
+			role.getAdi().updateAccountBalance(iAccountNumber, bdSum);
+			BankLogger.logMessage("info", "Made a deposit of $" + bdDeposit + " into account number " + iAccountNumber
+					+ ". The account now has $" + bdSum + ".\n");
+			role.getTdi().insertTransaction(role.getUserId(), "Made a deposit of $" + bdDeposit + " into account number " + iAccountNumber
+					+ ". The account now has $" + bdSum + ".\n");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return bdSum;
 	}
 }
