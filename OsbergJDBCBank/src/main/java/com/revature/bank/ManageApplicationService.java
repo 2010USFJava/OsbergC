@@ -52,6 +52,8 @@ public class ManageApplicationService extends Service {
 			System.out.println(e.getMessage());
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
 		}
 		return true;
 	}

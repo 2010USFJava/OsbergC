@@ -48,6 +48,9 @@ public class ApplyForAccountService extends Service {
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
 			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
+			return true;
 		}
 		System.out.println("Is this a joint account?");
 		System.out.println("1. Yes");
@@ -58,6 +61,9 @@ public class ApplyForAccountService extends Service {
 			iIsJointAccount = InputVerifier.verifyIntegerInput(sIsJointAccount, 0, 3);
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
 			return true;
 		}
 		ArrayList<Integer> accountUserIds = new ArrayList<>();
@@ -79,6 +85,9 @@ public class ApplyForAccountService extends Service {
 				}
 			} catch (InvalidInputException e) {
 				System.out.println(e.getMessage());
+				return true;
+			} catch (NumberFormatException e) {
+				System.out.println("Exception: Invalid input");
 				return true;
 			} catch (DuplicateUserException e) {
 				System.out.println(e.getMessage());
@@ -114,7 +123,6 @@ public class ApplyForAccountService extends Service {
 	 * 
 	 * @param role The role parameter is the wrapper class identity for the user of
 	 *             the program. It contains references to non-package classes.
-	 * @return TODO
 	 * @return boolean The return type determines if the main menu loop with
 	 *         continue functioning.
 	 */

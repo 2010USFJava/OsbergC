@@ -38,10 +38,19 @@ public class DepositService extends TransferService {
 		try {
 			iAccountNumber = obtainTargetUserAccountNumber(role, "Into which account would you like to make a deposit?",
 					"approved");
+			if (iAccountNumber < 0) {
+				throw new InvalidInputException("Exception: Invalid input");
+			}
 		} catch (UserDoesNotExistException e) {
 			System.out.println(e.getMessage());
 			return true;
 		} catch (NoAccountsException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 			return true;
 		}
@@ -53,6 +62,9 @@ public class DepositService extends TransferService {
 					new BigDecimal(Integer.MAX_VALUE));
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
 			return true;
 		}
 		makeDeposit(role, iAccountNumber, bdDeposit);

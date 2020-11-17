@@ -22,14 +22,10 @@ public class InputVerifier {
 	 */
 	public static Integer verifyIntegerInput(String sSelection, Integer low, Integer high) {
 		Integer iSelection = -1;
-		try {
 			iSelection = Integer.parseInt(sSelection);
 			if (iSelection < low || iSelection > high) {
 				throw new InvalidInputException("Exception: Invalid input");
 			}
-		} catch (Exception e) {
-			throw new InvalidInputException("Exception: Invalid input");
-		}
 		return iSelection;
 	}
 
@@ -41,14 +37,10 @@ public class InputVerifier {
 	 */
 	public static BigDecimal verifyBigDecimalInput(String sSelection, BigDecimal low, BigDecimal high) {
 		BigDecimal selection;
-		try {
 			selection = new BigDecimal(sSelection);
 			if (selection.compareTo(low) + selection.compareTo(high) != 0) {
 				throw new InvalidInputException("Exception: Invalid input");
 			}
-		} catch (Exception e) {
-			throw new InvalidInputException("Exception: Invalid input");
-		}
 		return selection;
 	}
 }

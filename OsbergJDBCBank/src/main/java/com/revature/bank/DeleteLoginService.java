@@ -28,6 +28,9 @@ public class DeleteLoginService extends Service {
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
 			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
+			return true;
 		} catch (UserDoesNotExistException e) {
 			System.out.println(e.getMessage());
 			return true;

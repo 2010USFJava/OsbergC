@@ -6,10 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.revature.role.roleName;
-import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
+import com.revature.role.roleName;
 import com.revature.util.InputVerifier;
 
 /**
@@ -152,12 +151,7 @@ public abstract class Service {
 			System.out.println(instructionForChoosingAccount);
 			String sAccountSelection = scanner.nextLine();
 			Integer iAccountSelection = null;
-			try {
-				iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
-			} catch (InvalidInputException e) {
-				System.out.println(e.getMessage());
-				return -1;
-			}
+			iAccountSelection = InputVerifier.verifyIntegerInput(sAccountSelection, 0, userAccounts.size());
 			return userAccounts.get(iAccountSelection - 1).getAccountNumber();
 		}
 	}

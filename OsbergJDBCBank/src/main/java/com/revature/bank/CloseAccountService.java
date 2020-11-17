@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.revature.role.roleName;
 import com.revature.banklogger.BankLogger;
+import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.NonZeroBalanceException;
 import com.revature.exception.UserDoesNotExistException;
@@ -49,6 +50,12 @@ public class CloseAccountService extends Service {
 			System.out.println(e.getMessage());
 		} catch (NonZeroBalanceException e) {
 			System.out.println(e.getMessage());
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
+			return true;
 		}
 		return true;
 	}

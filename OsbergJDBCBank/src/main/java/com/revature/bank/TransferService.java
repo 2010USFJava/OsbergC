@@ -48,6 +48,12 @@ public class TransferService extends Service {
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
 			return true;
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
+			return true;
 		}
 		System.out.println("Please enter the user ID for the account you wish you transfer to.");
 		String sDepositUserId = scanner.nextLine();
@@ -65,6 +71,12 @@ public class TransferService extends Service {
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
 			return true;
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
+			return true;
 		}
 		System.out.println("How much would you like to transfer?");
 		String sTransfer = scanner.nextLine();
@@ -74,6 +86,9 @@ public class TransferService extends Service {
 					new BigDecimal(Integer.MAX_VALUE));
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
 			return true;
 		}
 		if (bdTransfer.intValue() < 0) {
@@ -110,8 +125,8 @@ public class TransferService extends Service {
 				role.getAdi().updateAccountBalance(iAccountNumber, bdDiff);
 				BankLogger.logMessage("info", "Made a withdrawal of $" + bdWithdrawal + " from account number "
 						+ iAccountNumber + ". The account now has $" + bdDiff + ".\n");
-				role.getTdi().insertTransaction(role.getUserId(), "Made a withdrawal of $" + bdWithdrawal + " from account number "
-						+ iAccountNumber + ". The account now has $" + bdDiff + ".\n");
+				role.getTdi().insertTransaction(role.getUserId(), "Made a withdrawal of $" + bdWithdrawal
+						+ " from account number " + iAccountNumber + ". The account now has $" + bdDiff + ".\n");
 			} else {
 				throw new InsufficientFundsException("Exception: Insufficient funds");
 			}
@@ -134,15 +149,15 @@ public class TransferService extends Service {
 	 */
 	public BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
 		Account account = null;
-		BigDecimal bdSum = null; 
+		BigDecimal bdSum = null;
 		try {
 			account = role.getAdi().getAccountByAccountNumber(iAccountNumber);
 			bdSum = account.getBalance().add(bdDeposit);
 			role.getAdi().updateAccountBalance(iAccountNumber, bdSum);
 			BankLogger.logMessage("info", "Made a deposit of $" + bdDeposit + " into account number " + iAccountNumber
 					+ ". The account now has $" + bdSum + ".\n");
-			role.getTdi().insertTransaction(role.getUserId(), "Made a deposit of $" + bdDeposit + " into account number " + iAccountNumber
-					+ ". The account now has $" + bdSum + ".\n");
+			role.getTdi().insertTransaction(role.getUserId(), "Made a deposit of $" + bdDeposit
+					+ " into account number " + iAccountNumber + ". The account now has $" + bdSum + ".\n");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

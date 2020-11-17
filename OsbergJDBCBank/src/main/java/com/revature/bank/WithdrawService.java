@@ -45,6 +45,12 @@ public class WithdrawService extends TransferService {
 		} catch (NoAccountsException e) {
 			System.out.println(e.getMessage());
 			return true;
+		} catch (InvalidInputException e) {
+			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
+			return true;
 		}
 		System.out.println("How much would you like to withdraw?");
 		String sWithdrawal = scanner.nextLine();
@@ -54,6 +60,9 @@ public class WithdrawService extends TransferService {
 					new BigDecimal(Integer.MAX_VALUE));
 		} catch (InvalidInputException e) {
 			System.out.println(e.getMessage());
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Exception: Invalid input");
 			return true;
 		}
 		try {
