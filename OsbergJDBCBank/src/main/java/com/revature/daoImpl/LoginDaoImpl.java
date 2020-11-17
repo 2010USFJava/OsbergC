@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.revature.bank.Account;
 import com.revature.bank.Login;
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 import com.revature.dao.LoginDao;
 import com.revature.exception.InvalidInputException;
 import com.revature.util.DatabaseConnectionFactory;

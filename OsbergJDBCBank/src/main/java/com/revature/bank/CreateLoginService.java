@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import org.postgresql.util.PSQLException;
 
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.DuplicateUsernameException;
 import com.revature.exception.PasswordVerificationException;
@@ -79,7 +79,7 @@ public class CreateLoginService extends Service {
 	 * @return ArrayList<Login> The return statement returns the new list of Login
 	 *         objects.
 	 */
-	private Login createLogin(Role role, String username, String password, String passwordConfirmation,
+	public Login createLogin(Role role, String username, String password, String passwordConfirmation,
 			String givenName) {
 		Login login = new Login(null, username, password, roleName.CUSTOMER, givenName);
 		if (password.equals(passwordConfirmation)) {

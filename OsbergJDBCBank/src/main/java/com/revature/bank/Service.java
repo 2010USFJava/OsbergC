@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 import com.revature.exception.InvalidInputException;
 import com.revature.exception.NoAccountsException;
 import com.revature.exception.UserDoesNotExistException;
@@ -43,7 +43,7 @@ public abstract class Service {
 		return serviceName;
 	}
 
-	Integer obtainUserId(Role role) {
+	public Integer obtainUserId(Role role) {
 		String sUserId = null;
 		if (role.getRoleName() == roleName.CUSTOMER) {
 			return role.getUserId();
@@ -74,6 +74,7 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return boolean True is returned if a match is found.
 	 */
+//	@Deprecated
 //	boolean userExists(Role role, Integer iUserID) {
 //		ArrayList<Login> logins = role.getFileManager().readItemsFromFile(FileManager.LOGINS_FILE);
 //		ArrayList<Integer> userIDList = role.getFileManager().getAllLoginUserIDs(role, logins);
@@ -89,6 +90,7 @@ public abstract class Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return boolean True is returned if a match is found.
 	 */
+	@Deprecated
 	boolean accountExists(Role role, String usernameOrUserid) {
 		boolean exists = false;
 		try {

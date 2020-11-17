@@ -19,8 +19,4 @@ public class RoleServices {
 	public Service[] getServicesArray() {
 		return servicesArray;
 	}
-	
-	public enum roleName {
-		CUSTOMER, EMPLOYEE, ADMIN
-	}
 }

@@ -2,7 +2,7 @@ package com.revature.bank;
 
 import java.sql.SQLException;
 
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 import com.revature.banklogger.BankLogger;
 import com.revature.exception.WrongUsernameOrPasswordException;
 
@@ -52,7 +52,7 @@ public class LoginService extends Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return Integer Returns the user's ID if successful, or -1 if unsuccessful.
 	 */
-	private Integer validateLogin(Role role, String username, String password) {
+	public Integer validateLogin(Role role, String username, String password) {
 		Login login = null;
 		try {
 			login = role.getLdi().getLoginById(username);

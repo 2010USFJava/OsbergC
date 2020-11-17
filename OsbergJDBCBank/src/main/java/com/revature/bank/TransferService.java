@@ -100,7 +100,7 @@ public class TransferService extends Service {
 	 *             the program. It contains references to non-package classes.
 	 * @return BigDecimal Returns the amount of money in the account.
 	 */
-	BigDecimal makeWithdrawal(Role role, Integer iAccountNumber, BigDecimal bdWithdrawal) {
+	public BigDecimal makeWithdrawal(Role role, Integer iAccountNumber, BigDecimal bdWithdrawal) {
 		Account account = null;
 		BigDecimal bdDiff = null;
 		try {
@@ -132,7 +132,7 @@ public class TransferService extends Service {
 	 * @return boolean The return type determines if the main menu loop with
 	 *         continue functioning.
 	 */
-	BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
+	public BigDecimal makeDeposit(Role role, Integer iAccountNumber, BigDecimal bdDeposit) {
 		Account account = null;
 		BigDecimal bdSum = null; 
 		try {

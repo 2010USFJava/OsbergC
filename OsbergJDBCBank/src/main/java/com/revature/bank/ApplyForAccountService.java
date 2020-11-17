@@ -114,10 +114,11 @@ public class ApplyForAccountService extends Service {
 	 * 
 	 * @param role The role parameter is the wrapper class identity for the user of
 	 *             the program. It contains references to non-package classes.
+	 * @return TODO
 	 * @return boolean The return type determines if the main menu loop with
 	 *         continue functioning.
 	 */
-	private void createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIds) {
+	public Account createAccountApplication(Role role, Integer iAccountType, ArrayList<Integer> userIds) {
 		try {
 			switch (iAccountType) {
 			case 1:
@@ -137,5 +138,6 @@ public class ApplyForAccountService extends Service {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return new Account(null, "savings ", userIds, BigDecimal.ZERO);
 	}
 }

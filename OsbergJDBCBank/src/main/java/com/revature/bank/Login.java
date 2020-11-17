@@ -2,7 +2,7 @@ package com.revature.bank;
 
 import java.io.Serializable;
 
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 
 /**
  * The Login class is a substitute for a database entry. Its private fields

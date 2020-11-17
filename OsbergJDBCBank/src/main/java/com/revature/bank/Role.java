@@ -1,6 +1,6 @@
 package com.revature.bank;
 
-import com.revature.bank.RoleServices.roleName;
+import com.revature.role.roleName;
 import com.revature.daoImpl.AccountDaoImpl;
 import com.revature.daoImpl.LoginDaoImpl;
 import com.revature.daoImpl.TransactionDaoImpl;
