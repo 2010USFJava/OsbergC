@@ -1,0 +1,21 @@
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.revature.models">
+	<class name="Pokemon" table="pokemon">
+		<id name="id" type="int" column="poke_id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="name" type="string"></property>
+		<property name="type">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.revature.models.Type</param>
+			</type>
+		</property>
+		
+		<many-to-one name="trainer" fetch="join"></many-to-one>
+		
+	</class>
+</hibernate-mapping>
